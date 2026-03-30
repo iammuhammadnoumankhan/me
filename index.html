@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammad Nouman Khan — AI Engineer & Researcher</title>
+<meta name="description" content="AI Engineer & MLOps Specialist. Published IEEE researcher. Islamabad, Pakistan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* ── HERO ── */
+.hero {
+  position: relative;
+  min-height: calc(100vh - 64px);
+  display: flex; align-items: center;
+  padding: 80px 52px 80px;
+  overflow: hidden;
+}
+.hero-glow {
+  position: absolute;
+  top: -15%; left: -8%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(ellipse, rgba(0,242,255,0.055) 0%, transparent 68%);
+  pointer-events: none;
+}
+.hero-glow-right {
+  position: absolute;
+  bottom: -10%; right: -5%;
+  width: 40vw; height: 40vw;
+  background: radial-gradient(ellipse, rgba(0,106,113,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner {
+  position: relative; z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 80px;
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  align-items: center;
+}
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--primary);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  display: flex; align-items: center; gap: 12px;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.1s ease forwards;
+}
+.hero-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--primary); }
+
+.hero-name {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 5.5vw, 78px);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.025em;
+  color: var(--on-surface);
+  margin-bottom: 10px;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.2s ease forwards;
+}
+.hero-name span {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dim) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-role {
+  font-family: var(--font-display);
+  font-size: clamp(16px, 2vw, 24px);
+  font-weight: 500;
+  color: var(--on-surface-var);
+  letter-spacing: -0.01em;
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.3s ease forwards;
+}
+.hero-desc {
+  font-size: 15px;
+  color: var(--on-surface-var);
+  max-width: 520px;
+  line-height: 1.8;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.4s ease forwards;
+}
+.hero-actions {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.5s ease forwards;
+}
+.hero-socials {
+  display: flex; gap: 10px; flex-wrap: wrap;
+  margin-top: 28px;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.6s ease forwards;
+}
+
+/* Portrait */
+.portrait-wrap {
+  position: relative;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.25s ease forwards;
+}
+.portrait-card {
+  width: 300px; height: 360px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--surface-mid);
+  border: 1px solid var(--outline);
+  box-shadow: 0 0 80px rgba(0,242,255,0.06);
+  margin: 0 auto;
+  position: relative;
+}
+.portrait-card img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: top center;
+}
+.portrait-placeholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 10px;
+  background: linear-gradient(160deg, var(--surface-high) 0%, var(--surface-mid) 100%);
+}
+.portrait-placeholder .initials {
+  font-family: var(--font-display);
+  font-size: 64px; font-weight: 800;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dim));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.portrait-placeholder .p-hint {
+  font-family: var(--font-mono);
+  font-size: 10px; color: var(--on-surface-dim);
+  letter-spacing: 0.08em; text-align: center; line-height: 1.5;
+}
+.portrait-stat {
+  position: absolute;
+  background: rgba(22,22,22,0.90);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--outline);
+  border-left: 2px solid var(--primary);
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+}
+.portrait-stat .sv { font-family: var(--font-mono); font-size: 17px; font-weight: 500; color: var(--primary); line-height: 1; }
+.portrait-stat .sl { font-family: var(--font-mono); font-size: 10px; color: var(--on-surface-var); letter-spacing: 0.05em; text-transform: uppercase; margin-top: 2px; }
+.stat-tl { top: 24px; left: -24px; }
+.stat-br { bottom: 24px; right: -24px; }
+
+/* Stats row */
+.stats-row {
+  display: flex; gap: 0;
+  border: 1px solid var(--outline);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-top: 56px;
+  background: var(--surface-high);
+}
+.stat-cell {
+  flex: 1;
+  padding: 22px 28px;
+  border-right: 1px solid var(--outline);
+  transition: background var(--transition);
+}
+.stat-cell:last-child { border-right: none; }
+.stat-cell:hover { background: var(--surface-highest); }
+.stat-val {
+  font-family: var(--font-display);
+  font-size: 28px; font-weight: 800;
+  color: var(--primary); line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-lbl {
+  font-family: var(--font-mono);
+  font-size: 11px; color: var(--on-surface-var);
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+
+/* Quick nav cards */
+.quick-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 80px;
+}
+.quick-card {
+  background: var(--surface-high);
+  border: 1px solid var(--outline);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex; flex-direction: column; gap: 10px;
+  position: relative; overflow: hidden;
+  transition: background var(--transition), transform var(--transition), border-color var(--transition);
+}
+.quick-card:hover { background: var(--surface-highest); transform: translateY(-3px); border-color: var(--outline-hover); }
+.quick-card .qc-icon {
+  font-family: var(--font-mono); font-size: 13px;
+  color: var(--primary); opacity: 0.8;
+}
+.quick-card .qc-title {
+  font-family: var(--font-display); font-size: 17px; font-weight: 700;
+  color: var(--on-surface); letter-spacing: -0.01em;
+}
+.quick-card .qc-sub { font-size: 13px; color: var(--on-surface-var); line-height: 1.5; }
+.quick-card .qc-arrow {
+  margin-top: auto; font-family: var(--font-mono);
+  font-size: 12px; color: var(--primary);
+  transition: transform var(--transition);
+}
+.quick-card:hover .qc-arrow { transform: translateX(4px); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 960px) {
+  .hero { padding: 60px 24px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+  .portrait-wrap { order: -1; }
+  .portrait-card { width: 200px; height: 240px; }
+  .stat-tl, .stat-br { display: none; }
+  .stats-row { flex-direction: column; }
+  .stat-cell { border-right: none; border-bottom: 1px solid var(--outline); }
+  .stat-cell:last-child { border-bottom: none; }
+}
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-glow-right"></div>
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow">AI_ENGINEER · MLOPS · RESEARCHER</div>
+        <h1 class="hero-name">Muhammad<br><span>Nouman Khan</span></h1>
+        <div class="hero-role">Building Intelligence at Scale</div>
+        <p class="hero-desc">
+          AI Engineer & MLOps Specialist with expertise in LLM inference,
+          GPU-accelerated computing, Kubernetes cluster management, and
+          production AI systems. IEEE published researcher. Based in Islamabad, Pakistan.
+        </p>
+        <div class="hero-actions">
+          <a href="pages/experience.html" class="btn-primary">VIEW_EXPERIENCE →</a>
+          <a href="pages/projects.html" class="btn-secondary">PROJECTS</a>
+          <a href="pages/contact.html" class="btn-ghost">CONTACT</a>
+        </div>
+        <div class="hero-socials">
+          <a href="https://github.com/iammuhammadnoumankhan" target="_blank" rel="noopener noreferrer" class="social-chip">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            GITHUB
+          </a>
+          <a href="https://www.linkedin.com/in/muhammad-nouman-khan-248530233/" target="_blank" rel="noopener noreferrer" class="social-chip">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LINKEDIN
+          </a>
+          <a href="https://www.fiverr.com/s/qDaY9a5" target="_blank" rel="noopener noreferrer" class="social-chip">
+            <svg viewBox="0 0 24 24" fill="#1DBF73" xmlns="http://w3.org" style="width:24px; height:24px;">
+              <path d="M16.362 10.966h-2.181v-1.121c0-.498.396-.748.918-.748h1.263V7.034h-1.895c-1.895 0-2.85 1.059-2.85 2.556v1.376H10.15v2.064h1.464v6.936h2.567v-6.936h2.181l.362-2.064zM24 12c0 6.627-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0s12 5.373 12 12z"/>
+            </svg>
+            FIVERR
+          </a>
+          <a href="https://www.upwork.com/freelancers/~012aab2bdb181fe4b1?mp_source=share" target="_blank" rel="noopener noreferrer" class="social-chip">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-2.539 0-4.51 1.649-5.31 4.366-1.22-1.834-2.148-4.036-2.687-5.892H7.828v7.112c-.002 1.406-1.141 2.546-2.547 2.546-1.405 0-2.543-1.14-2.545-2.546V3.492H0v7.112c0 2.914 2.37 5.303 5.281 5.303 2.913 0 5.283-2.389 5.283-5.303v-1.19c.529 1.107 1.182 2.229 1.974 3.221l-1.673 7.873h2.797l1.213-5.71c1.063.679 2.285 1.109 3.686 1.109 3 0 5.439-2.452 5.439-5.45 0-3-2.439-5.439-5.439-5.439z"/>
+            </svg>
+            UPWORK
+          </a>
+          <a href="mailto:iammuhammadnoumankhan@gmail.com" class="social-chip">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            EMAIL
+          </a>
+        </div>
+        <!-- <div class="hero-socials">
+          <a href="https://github.com/iammuhammadnoumankhan" target="_blank" rel="noopener noreferrer" class="social-chip">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            GITHUB
+          </a>
+          <a href="https://www.linkedin.com/in/muhammad-nouman-khan-248530233/" target="_blank" rel="noopener noreferrer" class="social-chip">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LINKEDIN
+          </a>
+          <a href="https://www.fiverr.com/s/qDaY9a5" target="_blank" rel="noopener noreferrer" class="social-chip">
+            FIVERR
+          </a>
+          <a href="https://www.upwork.com/freelancers/~012aab2bdb181fe4b1?mp_source=share" target="_blank" rel="noopener noreferrer" class="social-chip">
+            UPWORK
+          </a>
+          <a href="mailto:iammuhammadnoumankhan@gmail.com" class="social-chip">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            EMAIL
+          </a>
+        </div> -->
+
+        <!-- Stats -->
+        <div class="stats-row reveal reveal-delay-1">
+          <div class="stat-cell"><div class="stat-val">2+</div><div class="stat-lbl">Years Experience</div></div>
+          <div class="stat-cell"><div class="stat-val">IEEE</div><div class="stat-lbl">Published</div></div>
+          <div class="stat-cell"><div class="stat-val">5+</div><div class="stat-lbl">Roles & Internships</div></div>
+          <div class="stat-cell"><div class="stat-val">500+</div><div class="stat-lbl">AI Projects</div></div>
+        </div>
+      </div>
+
+      <!-- Portrait -->
+      <div class="portrait-wrap">
+        <div class="portrait-card">
+          <img src="profile.jpeg" alt="Muhammad Nouman Khan"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="portrait-placeholder" style="display:none">
+            <div class="initials">MNK</div>
+            <div class="p-hint">Add profile.jpeg<br>to root folder</div>
+          </div>
+        </div>
+        <div class="portrait-stat stat-tl">
+          <div class="sv">2+</div>
+          <div class="sl">Years Experience</div>
+        </div>
+        <div class="portrait-stat stat-br">
+          <div class="sv">IEEE</div>
+          <div class="sl">Published</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK NAV -->
+  <div class="band">
+  <div class="section section-sm">
+    <div class="section-eyebrow reveal">EXPLORE</div>
+    <div class="quick-cards">
+      <a href="pages/about.html" class="quick-card reveal reveal-delay-1">
+        <div class="qc-icon">ABOUT_01</div>
+        <div class="qc-title">About Me</div>
+        <div class="qc-sub">Background, education &amp; the story behind the work</div>
+        <div class="qc-arrow">→</div>
+      </a>
+      <a href="pages/experience.html" class="quick-card reveal reveal-delay-2">
+        <div class="qc-icon">EXP_02</div>
+        <div class="qc-title">Experience</div>
+        <div class="qc-sub">Full career timeline with BetaCodes, iQera &amp; more</div>
+        <div class="qc-arrow">→</div>
+      </a>
+      <a href="pages/skills.html" class="quick-card reveal reveal-delay-3">
+        <div class="qc-icon">SKILLS_03</div>
+        <div class="qc-title">Technical Skills</div>
+        <div class="qc-sub">GPU clusters, K8s, inference, LLMs &amp; full stack</div>
+        <div class="qc-arrow">→</div>
+      </a>
+      <a href="pages/projects.html" class="quick-card reveal reveal-delay-4">
+        <div class="qc-icon">PROJ_04</div>
+        <div class="qc-title">Projects</div>
+        <div class="qc-sub">AI Studio, Glaucoma Detection &amp; 10+ more builds</div>
+        <div class="qc-arrow">→</div>
+      </a>
+      <a href="pages/research.html" class="quick-card reveal reveal-delay-1">
+        <div class="qc-icon">RES_05</div>
+        <div class="qc-title">Research</div>
+        <div class="qc-sub">IEEE publication on Graph-based RAG — ICOSST 2024</div>
+        <div class="qc-arrow">→</div>
+      </a>
+      <a href="pages/contact.html" class="quick-card reveal reveal-delay-2">
+        <div class="qc-icon">CONTACT_06</div>
+        <div class="qc-title">Contact</div>
+        <div class="qc-sub">Open to roles, research collab &amp; consulting</div>
+        <div class="qc-arrow">→</div>
+      </a>
+    </div>
+  </div>
+  </div>
+
+</div><!-- /page-wrapper -->
+
+<script src="js/nav.js"></script>
+<script src="js/shared.js"></script>
+</body>
+</html>

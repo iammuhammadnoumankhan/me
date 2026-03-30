@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skills — Muhammad Nouman Khan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+.skills-page-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+  gap: 32px;
+}
+.skill-group {
+  background: var(--surface-high);
+  border: 1px solid var(--outline);
+  border-radius: var(--radius-lg);
+  padding: 28px 28px 24px;
+  transition: background var(--transition);
+}
+.skill-group:hover { background: var(--surface-highest); }
+.sg-header {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--outline);
+}
+.sg-icon {
+  width: 36px; height: 36px;
+  background: var(--primary-glow);
+  border: 1px solid rgba(0,242,255,0.18);
+  border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; flex-shrink: 0;
+}
+.sg-title {
+  font-family: var(--font-mono); font-size: 12px;
+  color: var(--primary); letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.sg-sub { font-size: 12px; color: var(--on-surface-dim); margin-top: 1px; }
+.skill-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.skill-chip-lg {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--surface-mid);
+  border: 1px solid var(--outline);
+  color: var(--on-surface-var);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.03em;
+  transition: background var(--transition), border-color var(--transition), color var(--transition), transform var(--transition);
+  cursor: default;
+}
+.skill-chip-lg:hover {
+  background: rgba(0,242,255,0.07);
+  border-color: rgba(0,242,255,0.28);
+  color: var(--on-surface);
+  transform: translateY(-2px);
+}
+.skill-chip-lg.star {
+  border-left: 2px solid var(--primary);
+  color: var(--on-surface);
+}
+.skill-chip-lg .dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--primary); opacity: 0.7;
+}
+
+/* Proficiency bands */
+.prof-band {
+  display: flex; flex-direction: column; gap: 10px;
+  margin-top: 48px;
+}
+.pb-row {
+  display: flex; align-items: center; gap: 16px;
+}
+.pb-label { font-family: var(--font-mono); font-size: 11px; color: var(--on-surface-var); width: 100px; flex-shrink: 0; letter-spacing: 0.04em; }
+.pb-bar { flex: 1; height: 3px; background: var(--surface-mid); border-radius: 2px; overflow: hidden; }
+.pb-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-dim)); border-radius: 2px; transition: width 1.2s cubic-bezier(0.4,0,0.2,1); width: 0; }
+.pb-fill.animated { width: var(--w); }
+.pb-pct { font-family: var(--font-mono); font-size: 11px; color: var(--primary); width: 36px; text-align: right; }
+
+@media (max-width: 960px) {
+  .skills-page-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="page-hero-eyebrow">SKILLS</div>
+      <h1 class="page-hero-title">Technical <span>Arsenal</span></h1>
+      <p class="page-hero-sub">From GPU cluster provisioning to LLM inference optimization — the full stack of modern AI engineering.</p>
+    </div>
+  </div>
+
+  <div class="band-mid">
+  <div class="section">
+    <div class="skills-page-grid">
+
+      <div class="skill-group reveal reveal-delay-1">
+        <div class="sg-header">
+          <div class="sg-icon">⚡</div>
+          <div>
+            <div class="sg-title">GPU_INFRASTRUCTURE & HPC</div>
+            <div class="sg-sub">High-performance compute & hardware</div>
+          </div>
+        </div>
+        <div class="skill-chips">
+          <span class="skill-chip-lg star"><span class="dot"></span>NVIDIA DGX Systems</span>
+          <span class="skill-chip-lg star"><span class="dot"></span>A100 / H100 GPUs</span>
+          <span class="skill-chip-lg star"><span class="dot"></span>GPU-Accelerated Computing</span>
+          <span class="skill-chip-lg"><span class="dot"></span>Distributed Training</span>
+          <span class="skill-chip-lg"><span class="dot"></span>CUDA Workloads</span>
+          <span class="skill-chip-lg"><span class="dot"></span>NVIDIA Jetson</span>
+          <span class="skill-chip-lg"><span class="dot"></span>Raspberry Pi</span>
+          <span class="skill-chip-lg"><span class="dot"></span>OpenCV OAK-D</span>
+        </div>
+      </div>
+
+      <div class="skill-group reveal reveal-delay-2">
+        <div class="sg-header">
+          <div class="sg-icon">🧠</div>
+          <div>
+            <div class="sg-title">AI_MODEL_INFERENCE & OPTIMIZATION</div>
+            <div class="sg-sub">Serving, scaling & performance tuning</div>
+          </div>
+        </div>
+        <div class="skill-chips">
+          <span class="skill-chip-lg star"><span class="dot"></span>vLLM</span>
+          <span class="skill-chip-lg star"><span class="dot"></span>Triton Inference Server</span>
+          <span class="skill-chip-lg star"><span class="dot"></span>Inference Optimization</span>
+          <span class="skill-chip-lg"><span class="dot"></span>Quantization (INT4/INT8)</span>
+          <span class="skill-chip-lg"><span class="dot"></span>Tensor Parallelism</span>
+          <span class="skill-chip-lg"><span class="dot"></span>Continuous Batching</span>
+          <span class="skill-chip-lg"><span class="dot"></span>Model Scaling</span>
+          <span class="skill-chip-lg"><span class="dot"></span>Ollama</span>
+        </div>
+      </div>
+
+      <div class="skill-group reveal">
+        <div class="sg-header">
+          <div class="sg-icon">☸</div>
+          <div>
+            <div class="sg-title">KUBERNETES & MLOPS</div>
+            <div class="sg-sub">Cluster management & deployment pipelines</div>
+          </div>
+        </div>
+        <div class="skill-chips">
+          <span class="skill-chip-lg star"><span class="dot"></span>Kubernetes (K8s)</span>
+          <span class="skill-chip-lg star"><span class="dot"></span>Kubeadm</span>
+          <span class="skill-chip-lg star"><span class="dot"></span>Terraform</span>
+          <span class="skill-chip-lg star"><span class="dot"></span>BCM Cluster Mgmt</span>
+          <span class="skill-chip-lg"><span class="dot"></span>Docker</span>
+          <span class="skill-chip-lg"><span class="dot"></span>Kubeflow</span>
+          <span class="skill-chip-lg"><span class="dot"></span>CI/CD Pipelines</span>
+          <span class="skill-chip-lg"><span class="dot"></span>CKAD Certified</span>
+          <span class="skill-chip-lg"><span class="dot"></span>SageMaker</span>
+          <span class="skill-chip-lg"><span class="dot"></span>Model Registry</span>
+        </div>
+      </div>
+
+      <div class="skill-group reveal">
+        <div class="sg-header">
+          <div class="sg-icon">◆</div>
+          <div>
+            <div class="sg-title">AI_FRAMEWORKS & LLMs</div>
+            <div class="sg-sub">Foundation models, RAG & multi-agent systems</div>
+          </div>
+        </div>
+        <div class="skill-chips">
+          <span class="skill-chip-lg star"><span class="dot"></span>PyTorch</span>
+          <span class="skill-chip-lg star"><span class="dot"></span>HuggingFace Transformers</span>
+          <span class="skill-chip-lg star"><span class="dot"></span>LangChain</span>
+          <span class="skill-chip-lg"><span class="dot"></span>LlamaIndex</span>
+          <span class="skill-chip-lg"><span class="dot"></span>CrewAI</span>
+          <span class="skill-chip-lg"><span class="dot"></span>TensorFlow</span>
+          <span class="skill-chip-lg"><span class="dot"></span>OpenAI SDK</span>
+          <span class="skill-chip-lg"><span class="dot"></span>YOLO</span>
+          <span class="skill-chip-lg"><span class="dot"></span>OpenCV</span>
+          <span class="skill-chip-lg"><span class="dot"></span>Tesseract</span>
+          <span class="skill-chip-lg"><span class="dot"></span>Stable Diffusion</span>
+        </div>
+      </div>
+
+      <div class="skill-group reveal">
+        <div class="sg-header">
+          <div class="sg-icon">☁</div>
+          <div>
+            <div class="sg-title">CLOUD & BACKEND</div>
+            <div class="sg-sub">Infrastructure, APIs & data systems</div>
+          </div>
+        </div>
+        <div class="skill-chips">
+          <span class="skill-chip-lg star"><span class="dot"></span>AWS</span>
+          <span class="skill-chip-lg"><span class="dot"></span>GCP</span>
+          <span class="skill-chip-lg"><span class="dot"></span>Azure</span>
+          <span class="skill-chip-lg star"><span class="dot"></span>FastAPI</span>
+          <span class="skill-chip-lg"><span class="dot"></span>Django</span>
+          <span class="skill-chip-lg"><span class="dot"></span>Python</span>
+          <span class="skill-chip-lg"><span class="dot"></span>SQL</span>
+          <span class="skill-chip-lg"><span class="dot"></span>PostgreSQL</span>
+          <span class="skill-chip-lg"><span class="dot"></span>MongoDB</span>
+          <span class="skill-chip-lg"><span class="dot"></span>Firebase</span>
+          <span class="skill-chip-lg"><span class="dot"></span>Redis</span>
+          <span class="skill-chip-lg"><span class="dot"></span>Vector DBs</span>
+          <span class="skill-chip-lg"><span class="dot"></span>Kafka</span>
+        </div>
+      </div>
+
+      <div class="skill-group reveal">
+        <div class="sg-header">
+          <div class="sg-icon">🔧</div>
+          <div>
+            <div class="sg-title">TOOLS & WORKFLOW</div>
+            <div class="sg-sub">Dev toolchain & automation</div>
+          </div>
+        </div>
+        <div class="skill-chips">
+          <span class="skill-chip-lg"><span class="dot"></span>Git / GitHub</span>
+          <span class="skill-chip-lg"><span class="dot"></span>Jupyter</span>
+          <span class="skill-chip-lg"><span class="dot"></span>VSCode</span>
+          <span class="skill-chip-lg"><span class="dot"></span>Roboflow</span>
+          <span class="skill-chip-lg"><span class="dot"></span>CVAT</span>
+          <span class="skill-chip-lg"><span class="dot"></span>Selenium</span>
+          <span class="skill-chip-lg"><span class="dot"></span>BeautifulSoup</span>
+          <span class="skill-chip-lg"><span class="dot"></span>Crawl4AI</span>
+          <span class="skill-chip-lg"><span class="dot"></span>Ollama</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Proficiency bars -->
+    <div style="max-width: 640px; margin-top: 72px;">
+      <div class="section-eyebrow reveal">PROFICIENCY_OVERVIEW</div>
+      <div class="prof-band reveal" id="prof-band">
+        <div class="pb-row">
+          <div class="pb-label">LLM / GenAI</div>
+          <div class="pb-bar"><div class="pb-fill" style="--w:92%"></div></div>
+          <div class="pb-pct">92%</div>
+        </div>
+        <div class="pb-row">
+          <div class="pb-label">MLOps / K8s</div>
+          <div class="pb-bar"><div class="pb-fill" style="--w:88%"></div></div>
+          <div class="pb-pct">88%</div>
+        </div>
+        <div class="pb-row">
+          <div class="pb-label">GPU / HPC</div>
+          <div class="pb-bar"><div class="pb-fill" style="--w:84%"></div></div>
+          <div class="pb-pct">84%</div>
+        </div>
+        <div class="pb-row">
+          <div class="pb-label">Computer Vision</div>
+          <div class="pb-bar"><div class="pb-fill" style="--w:80%"></div></div>
+          <div class="pb-pct">80%</div>
+        </div>
+        <div class="pb-row">
+          <div class="pb-label">Cloud / AWS</div>
+          <div class="pb-bar"><div class="pb-fill" style="--w:78%"></div></div>
+          <div class="pb-pct">78%</div>
+        </div>
+        <div class="pb-row">
+          <div class="pb-label">Backend APIs</div>
+          <div class="pb-bar"><div class="pb-fill" style="--w:75%"></div></div>
+          <div class="pb-pct">75%</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+</div>
+<script src="../js/nav.js"></script>
+<script src="../js/shared.js"></script>
+<script>
+/* Animate proficiency bars when they come into view */
+const pbObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.pb-fill').forEach(f => f.classList.add('animated'));
+      pbObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+const pb = document.getElementById('prof-band');
+if (pb) pbObserver.observe(pb);
+</script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research — Muhammad Nouman Khan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+.pub-card {
+  background: var(--surface-high);
+  border: 1px solid var(--outline);
+  border-left: 3px solid var(--primary);
+  border-radius: var(--radius-lg);
+  padding: 40px 44px;
+  transition: box-shadow var(--transition);
+  max-width: 860px;
+}
+.pub-card:hover { box-shadow: 0 12px 48px rgba(0,0,0,0.35), 0 0 32px rgba(0,242,255,0.04); }
+.pub-venue-row {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.pub-venue {
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--primary); letter-spacing: 0.1em; text-transform: uppercase;
+}
+.pub-badge {
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--on-surface-dim);
+  background: var(--surface-highest);
+  border: 1px solid var(--outline);
+  padding: 2px 10px; border-radius: 20px; letter-spacing: 0.04em;
+}
+.pub-title {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 2.5vw, 26px);
+  font-weight: 700; color: var(--on-surface);
+  line-height: 1.3; letter-spacing: -0.015em;
+  margin-bottom: 16px;
+}
+.pub-authors {
+  font-size: 14px; color: var(--on-surface-var); line-height: 1.65; margin-bottom: 20px;
+}
+.pub-authors strong { color: var(--on-surface); font-weight: 500; }
+.pub-meta-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px; margin-top: 24px;
+}
+.pub-meta-item {
+  background: var(--surface-mid);
+  border: 1px solid var(--outline);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+}
+.pmi-label { font-family: var(--font-mono); font-size: 10px; color: var(--on-surface-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+.pmi-value { font-size: 13.5px; color: var(--on-surface); font-weight: 500; }
+
+/* Research areas */
+.research-areas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 48px;
+}
+.research-area {
+  background: var(--surface-high);
+  border: 1px solid var(--outline);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  transition: background var(--transition), border-color var(--transition);
+}
+.research-area:hover { background: var(--surface-highest); border-color: rgba(0,242,255,0.2); }
+.ra-icon { font-size: 24px; margin-bottom: 12px; }
+.ra-title { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: var(--on-surface); margin-bottom: 8px; letter-spacing: -0.01em; }
+.ra-desc { font-size: 13px; color: var(--on-surface-var); line-height: 1.65; }
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="page-hero-eyebrow">RESEARCH</div>
+      <h1 class="page-hero-title">IEEE <span>Publication</span></h1>
+      <p class="page-hero-sub">Peer-reviewed research at the intersection of knowledge graphs, retrieval augmentation, and large language models.</p>
+    </div>
+  </div>
+
+  <!-- PUBLICATION -->
+  <div class="band-mid">
+  <div class="section">
+    <div class="section-eyebrow reveal">ICOSST_2024</div>
+    <h2 class="section-title reveal">Published Paper</h2>
+
+    <div class="pub-card reveal" style="margin-top: 40px;">
+      <div class="pub-venue-row">
+        <span class="pub-venue">IEEE · ICOSST 2024</span>
+        <span class="pub-badge">PEER-REVIEWED</span>
+        <span class="pub-badge">DECEMBER 2024</span>
+      </div>
+      <div class="pub-title">
+        To Enhance Graph-Based Retrieval-Augmented Generation (RAG) with Robust Retrieval Techniques
+      </div>
+      <div class="pub-authors">
+        M. Rani, B. K. Mishra, D. Thakker, and <strong>M. N. Khan</strong> —
+        18th International Conference on Open-Source Systems and Technologies (ICOSST), pp. 1–6, IEEE, Dec. 2024.
+        In collaboration with the University of Hull, UK.
+      </div>
+      <div style="font-size:14px; color:var(--on-surface-var); line-height:1.75;">
+        This paper proposes enhancements to graph-based RAG pipelines by introducing robust retrieval strategies that improve
+        the relevance and accuracy of retrieved context in large language model applications. The work addresses key limitations
+        of vanilla vector-similarity retrieval by leveraging graph traversal and hybrid indexing techniques to improve
+        answer grounding in domain-specific knowledge bases.
+      </div>
+      <div class="pub-meta-grid">
+        <div class="pub-meta-item">
+          <div class="pmi-label">Venue</div>
+          <div class="pmi-value">ICOSST 2024</div>
+        </div>
+        <div class="pub-meta-item">
+          <div class="pmi-label">Publisher</div>
+          <div class="pmi-value">IEEE</div>
+        </div>
+        <div class="pub-meta-item">
+          <div class="pmi-label">Date</div>
+          <div class="pmi-value">December 2024</div>
+        </div>
+        <div class="pub-meta-item">
+          <div class="pmi-label">Pages</div>
+          <div class="pmi-value">1–6</div>
+        </div>
+        <div class="pub-meta-item">
+          <div class="pmi-label">Collaboration</div>
+          <div class="pmi-value">University of Hull, UK</div>
+        </div>
+        <div class="pub-meta-item">
+          <div class="pmi-label">Topic</div>
+          <div class="pmi-value">Graph-based RAG</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- RESEARCH INTERESTS -->
+  <div class="band">
+  <div class="section">
+    <div class="section-eyebrow reveal">RESEARCH_INTERESTS</div>
+    <h2 class="section-title reveal">Areas of Focus</h2>
+    <div class="research-areas">
+      <div class="research-area reveal reveal-delay-1">
+        <div class="ra-icon">🔗</div>
+        <div class="ra-title">Graph-based RAG</div>
+        <div class="ra-desc">Knowledge graph construction and traversal for improved context retrieval in LLM pipelines. Hybrid graph + vector indexing strategies.</div>
+      </div>
+      <div class="research-area reveal reveal-delay-2">
+        <div class="ra-icon">⚡</div>
+        <div class="ra-title">LLM Inference Optimization</div>
+        <div class="ra-desc">Quantization, speculative decoding, tensor parallelism and kernel fusion for low-latency LLM serving at scale on GPU hardware.</div>
+      </div>
+      <div class="research-area reveal reveal-delay-3">
+        <div class="ra-icon">🤖</div>
+        <div class="ra-title">Multi-Agent AI Systems</div>
+        <div class="ra-desc">Designing orchestration frameworks for collaborative AI agents in complex task environments. Tool use, planning, and memory architectures.</div>
+      </div>
+      <div class="research-area reveal reveal-delay-4">
+        <div class="ra-icon">👁</div>
+        <div class="ra-title">Computer Vision & Medical AI</div>
+        <div class="ra-desc">Attention-based architectures for medical imaging, edge-deployed vision models, and real-time object detection in resource-constrained environments.</div>
+      </div>
+      <div class="research-area reveal">
+        <div class="ra-icon">🏗</div>
+        <div class="ra-title">MLOps at Scale</div>
+        <div class="ra-desc">Reproducible, observable, and reliable ML systems in production — spanning GPU cluster management, CI/CD for ML, and model lifecycle governance.</div>
+      </div>
+      <div class="research-area reveal">
+        <div class="ra-icon">🌱</div>
+        <div class="ra-title">Generative Models</div>
+        <div class="ra-desc">Fine-tuning and evaluation of diffusion models and large language models for domain-specific generation tasks including code, speech, and images.</div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+</div>
+<script src="../js/nav.js"></script>
+<script src="../js/shared.js"></script>
+</body>
+</html>
