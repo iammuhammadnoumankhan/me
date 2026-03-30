@@ -88,6 +88,36 @@
 @media (max-width: 960px) {
   .skills-page-grid { grid-template-columns: 1fr; }
 }
+
+@media (max-width: 640px) {
+  .skill-group { padding: 22px 18px 20px; }
+  .sg-header {
+    align-items: flex-start;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+  }
+  .sg-title {
+    font-size: 11px;
+    line-height: 1.5;
+  }
+  .skill-chip-lg {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .prof-band { margin-top: 36px; }
+  .pb-row {
+    flex-wrap: wrap;
+    gap: 8px 12px;
+  }
+  .pb-label,
+  .pb-pct {
+    width: auto;
+  }
+  .pb-bar {
+    width: 100%;
+    flex-basis: 100%;
+  }
+}
 </style>
 </head>
 <body>

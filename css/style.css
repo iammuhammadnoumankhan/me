@@ -521,10 +521,56 @@ footer {
 
 /* ─── RESPONSIVE ──────────────────────────────────── */
 @media (max-width: 960px) {
-  nav { padding: 0 24px; }
+  nav { padding: 0 20px; }
   .nav-links, .nav-cta { display: none; }
   .nav-hamburger { display: flex; }
-  .section, .section-sm { padding: 64px 24px; }
-  .page-hero { padding: 56px 24px 48px; }
-  footer { padding: 24px; }
+  .nav-drawer { padding: 20px 20px 28px; }
+  .section, .section-sm { padding: 56px 20px; }
+  .page-hero { padding: 48px 20px 40px; }
+  .timeline { padding-left: 28px; }
+  .timeline-dot { left: -32px; }
+  footer {
+    padding: 24px 20px;
+    align-items: flex-start;
+  }
+  .footer-right {
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 640px) {
+  nav {
+    height: 60px;
+    padding: 0 16px;
+  }
+  .page-wrapper { padding-top: 60px; }
+  .nav-drawer {
+    top: 60px;
+    padding: 18px 16px 24px;
+  }
+  .section, .section-sm { padding: 48px 16px; }
+  .page-hero { padding: 40px 16px 32px; }
+  .section-title { font-size: 28px; }
+  .section-subtitle,
+  .page-hero-sub { font-size: 14px; line-height: 1.7; }
+  .page-hero-eyebrow,
+  .section-eyebrow { letter-spacing: 0.14em; }
+  .highlight-card { padding: 16px; }
+  .timeline { padding-left: 22px; }
+  .timeline::before { top: 10px; bottom: 12px; }
+  .timeline-dot {
+    left: -26px;
+    width: 8px;
+    height: 8px;
+  }
+  .timeline-role { font-size: 19px; }
+  .timeline-bullets li { padding-left: 16px; }
+  .chip,
+  .social-chip {
+    font-size: 10px;
+    padding: 7px 11px;
+    letter-spacing: 0.04em;
+  }
+  footer { padding: 20px 16px; }
 }

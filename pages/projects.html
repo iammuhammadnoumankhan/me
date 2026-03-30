@@ -105,6 +105,24 @@
   .project-card.featured .pcard-stat-col { flex-direction: row; flex-wrap: wrap; min-width: unset; }
   .featured-stat { flex: 1; min-width: 120px; }
 }
+
+@media (max-width: 640px) {
+  .filter-bar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    margin: 0 -2px 36px;
+    scrollbar-width: thin;
+  }
+  .filter-btn { flex: 0 0 auto; }
+  .project-card { padding: 22px 18px; }
+  .project-card.featured { gap: 20px; }
+  .project-card.featured .pcard-stat-col {
+    flex-direction: column;
+    width: 100%;
+  }
+  .featured-stat { min-width: 0; }
+}
 </style>
 </head>
 <body>

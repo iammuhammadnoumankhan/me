@@ -233,6 +233,42 @@
   .stat-cell { border-right: none; border-bottom: 1px solid var(--outline); }
   .stat-cell:last-child { border-bottom: none; }
 }
+
+@media (max-width: 640px) {
+  .hero {
+    min-height: auto;
+    padding: 40px 16px 52px;
+  }
+  .hero-inner { gap: 32px; }
+  .hero-name { font-size: clamp(34px, 12vw, 48px); }
+  .hero-role {
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+  .hero-desc {
+    font-size: 14px;
+    line-height: 1.75;
+    margin-bottom: 28px;
+  }
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero-actions a {
+    width: 100%;
+    justify-content: center;
+  }
+  .hero-socials { margin-top: 20px; }
+  .portrait-card { width: 180px; height: 220px; }
+  .stats-row { margin-top: 36px; }
+  .stat-cell { padding: 18px 16px; }
+  .stat-val { font-size: 24px; }
+  .quick-cards {
+    grid-template-columns: 1fr;
+    margin-top: 56px;
+  }
+  .quick-card { padding: 20px; }
+}
 </style>
 </head>
 <body>

@@ -39,6 +39,18 @@
   .exp-sidebar { order: -1; flex-direction: row; flex-wrap: wrap; }
   .sidebar-card { flex: 1; min-width: 160px; }
 }
+
+@media (max-width: 640px) {
+  .exp-layout { gap: 32px; }
+  .exp-sidebar {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .sidebar-card {
+    min-width: 0;
+    padding: 16px;
+  }
+}
 </style>
 </head>
 <body>
@@ -73,8 +85,8 @@
             <span class="timeline-location">📍 Islamabad, Pakistan</span>
           </div>
           <ul class="timeline-bullets">
-            <li>Provisioned and managed <strong style="color:var(--on-surface)">NVIDIA DGX systems</strong> and GPU nodes (A100, H100) for distributed AI model training and high-throughput inference workloads.</li>
-            <li>Managed Kubernetes clusters using <strong style="color:var(--on-surface)">Kubeadm, Terraform, and BCM (Bare-Metal Cluster Management)</strong> for high-availability production environments.</li>
+            <li>Provisioned and managed <strong style="color:var(--on-surface)">NVIDIA DGX systems</strong> and GPU nodes (H100, H200) for distributed AI model training and high-throughput inference workloads.</li>
+            <li>Managed Kubernetes clusters using <strong style="color:var(--on-surface)">Kubeadm, Terraform, and BCM (Base Command Manager)</strong> for high-availability production environments.</li>
             <li>Built AI model serving infrastructure using <strong style="color:var(--on-surface)">vLLM and Triton Inference Server</strong>; applied quantization (INT4/INT8), tensor parallelism, and continuous batching to maximize GPU utilization.</li>
             <li>Implemented <strong style="color:var(--on-surface)">model scaling strategies</strong> including horizontal pod autoscaling and GPU-aware K8s scheduling to handle variable production loads.</li>
             <li>Designed end-to-end ML pipelines with CI/CD, Docker, and cloud-native workflows on AWS, GCP, and Azure — from model development to production.</li>
@@ -82,13 +94,14 @@
           </ul>
           <div class="tl-tags">
             <span class="chip">NVIDIA DGX</span>
-            <span class="chip">A100/H100</span>
+            <span class="chip">H100/H200</span>
             <span class="chip">Kubernetes</span>
             <span class="chip">Kubeadm</span>
             <span class="chip">Terraform</span>
             <span class="chip">BCM</span>
             <span class="chip">vLLM</span>
             <span class="chip">Triton</span>
+            <span class="chip">Kserve</span>
             <span class="chip">Docker</span>
             <span class="chip">CI/CD</span>
             <span class="chip">AWS</span>
@@ -241,7 +254,7 @@
         <div class="sidebar-card reveal">
           <div class="sc-label">INFERENCE</div>
           <div class="sc-value">vLLM + Triton</div>
-          <div class="sc-sub">INT4/INT8 · Tensor parallelism</div>
+          <div class="sc-sub">FP8/INT8 · Tensor parallelism</div>
         </div>
         <a href="contact.html" class="btn-primary reveal" style="text-align:center; justify-content:center; margin-top:8px;">
           OPEN TO WORK →
