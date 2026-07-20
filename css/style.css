@@ -525,6 +525,7 @@ footer {
   .nav-links, .nav-cta { display: none; }
   .nav-hamburger { display: flex; }
   .nav-drawer { padding: 20px 20px 28px; }
+  .nav-drawer .nav-cta { display: block; }
   .section, .section-sm { padding: 56px 20px; }
   .page-hero { padding: 48px 20px 40px; }
   .timeline { padding-left: 28px; }
