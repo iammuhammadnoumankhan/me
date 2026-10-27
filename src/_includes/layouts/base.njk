@@ -40,6 +40,10 @@
 </main><!-- /page-wrapper -->
 {% include "components/footer.njk" %}
 <script src="{{ '/js/shared.js' | rel(page.url) }}"></script>
+{%- if site.analytics and site.analytics.goatcounter %}
+{#- GoatCounter count.v5.js pinned by its published SRI hash; links with data-goatcounter-click are counted as events #}
+<script data-goatcounter="https://{{ site.analytics.goatcounter }}.goatcounter.com/count" async src="https://gc.zgo.at/count.v5.js" crossorigin="anonymous" integrity="sha384-atnOLvQb9t+jTSipvd75X2yginT4PjVbqDdlJAmxMm+wYElFmeR6EmLP5bYeoRVQ"></script>
+{%- endif %}
 {%- for s in pageScripts %}
 <script src="{{ ('/js/' + s + '.js') | rel(page.url) }}"></script>
 {%- endfor %}

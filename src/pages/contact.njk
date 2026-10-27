@@ -22,7 +22,7 @@ permalink: /pages/contact.html
         </div>
         <div class="contact-actions reveal">
           <a href="mailto:{{ profile.email }}" class="btn-primary contact-cta">{{ contact.cta }}</a>
-          <a href="{{ ('/' + cv.filename) | rel(page.url) }}" class="btn-secondary" download>DOWNLOAD_CV ↓</a>
+          <a href="{{ ('/' + cv.filename) | rel(page.url) }}" class="btn-secondary" download data-goatcounter-click="cv-download/contact" data-goatcounter-title="CV download (contact)">DOWNLOAD_CV ↓</a>
         </div>
 
         {%- if contact.availability and contact.availability.available %}

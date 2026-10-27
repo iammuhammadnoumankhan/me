@@ -4,10 +4,32 @@
   "title": "site.yaml",
   "type": "object",
   "additionalProperties": false,
-  "required": ["url", "lang"],
+  "required": [
+    "url",
+    "lang"
+  ],
   "properties": {
-    "url": { "type": "string", "pattern": "^https?://\\S+[^/]$", "description": "Public site URL, no trailing slash" },
-    "lang": { "type": "string" },
-    "hosted_on": { "type": "string" }
+    "url": {
+      "type": "string",
+      "pattern": "^https?://\\S+[^/]$",
+      "description": "Public site URL, no trailing slash"
+    },
+    "lang": {
+      "type": "string"
+    },
+    "hosted_on": {
+      "type": "string"
+    },
+    "analytics": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "goatcounter": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$",
+          "description": "GoatCounter account code (https://<code>.goatcounter.com)"
+        }
+      }
+    }
   }
 }

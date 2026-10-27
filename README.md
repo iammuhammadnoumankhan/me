@@ -17,7 +17,7 @@ Edit the file for what you want to change, then push:
 | `src/_data/research.yaml` | Publications and research interests | Research |
 | `src/_data/education.yaml` | Degrees, certifications and awards | About |
 | `src/_data/pages.yaml` | Page titles, SEO descriptions, hero text, nav order, page-specific cards | Every page |
-| `src/_data/site.yaml` | Public URL and language | `<head>` metadata, sitemap |
+| `src/_data/site.yaml` | Public URL, language, analytics | `<head>` metadata, sitemap, GoatCounter |
 | `src/_data/cv.yaml` | CV file name, headline and which projects to include | The PDF CV |
 
 Each file has a comment at the top explaining its fields. Some conventions:
@@ -56,6 +56,15 @@ The build turns `src/pages/cv.njk` into `cv.html`, then prints it to `Muhammad-N
 - **Preview locally:** run `npm run cv`, then open `_site/Muhammad-Nouman-Khan-CV.pdf`, or open `_site/cv.html` in a browser.
 
 If you add content and the CV grows to three pages, drop a project from `cv.yaml` or trim a bullet point.
+
+## Analytics
+
+Visits are counted with [GoatCounter](https://www.goatcounter.com): privacy-friendly, no cookies, no consent banner. The dashboard is at https://nouman.goatcounter.com.
+
+- It shows page views, referrers (e.g. LinkedIn, GitHub), countries, browsers and screen sizes.
+- **CV downloads** from the site's buttons appear as events named `cv-download/home` and `cv-download/contact`. Direct links to the PDF (e.g. from the GitHub profile badge) aren't counted, because the PDF can't run the counter.
+- Visits from `localhost` are never counted, and ad blockers may hide some visits.
+- To turn it off, delete the `analytics` block in `src/_data/site.yaml`.
 
 ## Validation
 

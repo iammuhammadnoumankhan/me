@@ -5,3 +5,8 @@
 url: https://iammuhammadnoumankhan.github.io/me
 lang: en
 hosted_on: GitHub Pages
+
+# Privacy-friendly analytics (no cookies, no personal data). Dashboard: https://nouman.goatcounter.com
+# Delete this block to turn analytics off. Localhost visits are never counted.
+analytics:
+  goatcounter: nouman

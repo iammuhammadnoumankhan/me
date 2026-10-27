@@ -14,7 +14,7 @@ Conventions shared by every file:
 
 | File | Shape | Required | Notes |
 |---|---|---|---|
-| `site.yaml` | object | `url` (no trailing slash), `lang` | `url` drives canonical, Open Graph and sitemap URLs |
+| `site.yaml` | object | `url` (no trailing slash), `lang` | `url` drives canonical, Open Graph and sitemap URLs; optional `analytics.goatcounter` (account code) adds the GoatCounter script to every base-layout page |
 | `profile.yaml` | object | `name`, `first_name`, `last_name`, `logo`, `headline`, `tagline`, `roles[]`, `summary`, `location`, `email`, `photo`, `links[]`, `stats[]` | `links[].id` ∈ `github, linkedin, fiverr, upwork, email` (also picks the icon); `portrait_stats` ≤ 2 items; `community[]` optional |
 | `experience.yaml` | array, newest first | `role`, `company`, `location`, `start`, `highlights[]` (≥1) | `type` ∈ `full-time, part-time, contract, freelance, internship`; `remote: true` renders "Remote (location)"; `tags[]` optional |
 | `projects.yaml` | object | `categories[]` (`id`, `label`), `items[]` (`name`, `category`, `date`, `priority` 1–100, `description`, `tags[]`) | sorted by `priority` (desc), then `date` (newest); featured items always lead; `ongoing: true` shows "— PRESENT"; `date_estimated: true` marks tentative dates (not displayed); `featured: true` makes it the wide card (with `stats[]`); `label` overrides `PROJECT_NN`; `links` ⊂ `{github, demo, paper}`, **public repos only** |

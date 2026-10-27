@@ -40,4 +40,5 @@ Non-negotiable rules for working in this repo. They come from the owner's explic
 - Pin exact versions (`-E`), and only use releases **at least two weeks old**. The same applies to GitHub Actions major versions.
 - Keep `npm audit` at 0 vulnerabilities.
 - Every data file needs a schema in `schemas/`, and a new field goes into the schema before the YAML. Schemas reject unknown keys on purpose; don't loosen them to make an error go away.
-- Fonts are self-hosted (no Google Fonts or other third-party requests) under the SIL Open Font License.
+- Fonts are self-hosted (no Google Fonts) under the SIL Open Font License.
+- **The only third-party request is GoatCounter analytics**, loaded from a versioned file (`count.vN.js`) pinned with its published SRI `integrity` hash. When upgrading, take the hash from goatcounter.com/help/countjs-versions and verify it locally. Never add cookies, trackers or other third-party scripts.
