@@ -11,11 +11,10 @@ headline: AI Engineer · MLOps Engineer
 # Projects to include, by exact name from projects.yaml, in this order.
 # Keep it to your strongest 4–6 so the CV stays at two pages.
 projects:
+  - Sadaa — ASR Annotation Platform
   - AI Studio
-  - Attention-Based Glaucoma Detection
-  - Tax & Finance Chatbot
-  - Fine-Tune Whisper on Quranic Data
-  - Inventory Management (YOLOv8)
+  - SecureFace — Face Recognition with Anti-Spoofing
+  - GOT-OCR 2.0 Microservice
 
 # Show each job's tag list as a "Tech:" line (good for keyword-matching ATS)
 show_tech: true

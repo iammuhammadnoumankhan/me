@@ -120,3 +120,5 @@
   color: var(--primary); transition: opacity var(--transition);
 }
 .pcard-links a:hover { opacity: 0.75; }
+.pcard-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.pcard-date { font-family: var(--font-mono); font-size: 11px; color: var(--on-surface-var); letter-spacing: 0.06em; white-space: nowrap; }

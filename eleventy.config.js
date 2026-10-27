@@ -136,6 +136,13 @@ export default function (eleventyConfig) {
         .filter((n) => !seen.has(n) && seen.add(n)),
     }));
   });
+  /* Projects: highest priority first, newest first on ties */
+  eleventyConfig.addFilter("byPriority", (items = []) =>
+    [...items].sort((a, b) => b.priority - a.priority || String(b.date).localeCompare(String(a.date)))
+  );
+  /* "MAR 2025", or "JUL 2026 — PRESENT" for ongoing projects */
+  eleventyConfig.addFilter("projectDate", (p) => monthYear(p.date) + (p.ongoing ? " — PRESENT" : ""));
+
   eleventyConfig.addFilter("pickByName", (items, names = []) =>
     names.map((n) => items.find((i) => i.name === n)).filter(Boolean)
   );

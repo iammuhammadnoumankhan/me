@@ -4,17 +4,28 @@
   "title": "projects.yaml",
   "type": "object",
   "additionalProperties": false,
-  "required": ["categories", "items"],
+  "required": [
+    "categories",
+    "items"
+  ],
   "properties": {
     "categories": {
       "type": "array",
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["id", "label"],
+        "required": [
+          "id",
+          "label"
+        ],
         "properties": {
-          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
-          "label": { "$ref": "_defs.schema.json#/definitions/text" }
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "label": {
+            "$ref": "_defs.schema.json#/definitions/text"
+          }
         }
       }
     },
@@ -23,31 +34,86 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["name", "category", "description", "tags"],
+        "required": [
+          "name",
+          "category",
+          "date",
+          "priority",
+          "description",
+          "tags"
+        ],
         "properties": {
-          "name": { "$ref": "_defs.schema.json#/definitions/text" },
-          "featured": { "type": "boolean" },
-          "label": { "$ref": "_defs.schema.json#/definitions/text" },
-          "category": { "type": "string", "description": "Must match a categories[].id" },
-          "description": { "$ref": "_defs.schema.json#/definitions/text" },
-          "tags": { "$ref": "_defs.schema.json#/definitions/tags" },
+          "name": {
+            "$ref": "_defs.schema.json#/definitions/text"
+          },
+          "featured": {
+            "type": "boolean"
+          },
+          "label": {
+            "$ref": "_defs.schema.json#/definitions/text"
+          },
+          "category": {
+            "type": "string",
+            "description": "Must match a categories[].id"
+          },
+          "date": {
+            "$ref": "_defs.schema.json#/definitions/yearMonth",
+            "description": "When the project was built (or started, if ongoing)"
+          },
+          "date_estimated": {
+            "type": "boolean",
+            "description": "true = tentative date, to be confirmed (not shown on the site)"
+          },
+          "ongoing": {
+            "type": "boolean",
+            "description": "true = still in progress; shown as '<date> — PRESENT'"
+          },
+          "priority": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "description": "Sort order: higher shows first (featured projects always lead)"
+          },
+          "description": {
+            "$ref": "_defs.schema.json#/definitions/text"
+          },
+          "tags": {
+            "$ref": "_defs.schema.json#/definitions/tags"
+          },
           "stats": {
             "type": "array",
             "items": {
               "type": "object",
               "additionalProperties": false,
-              "required": ["value", "label"],
-              "properties": { "value": { "$ref": "_defs.schema.json#/definitions/text" }, "label": { "$ref": "_defs.schema.json#/definitions/text" } }
+              "required": [
+                "value",
+                "label"
+              ],
+              "properties": {
+                "value": {
+                  "$ref": "_defs.schema.json#/definitions/text"
+                },
+                "label": {
+                  "$ref": "_defs.schema.json#/definitions/text"
+                }
+              }
             }
           },
           "links": {
             "type": "object",
             "additionalProperties": false,
             "properties": {
-              "github": { "$ref": "_defs.schema.json#/definitions/url" },
-              "demo": { "$ref": "_defs.schema.json#/definitions/url" },
-              "paper": { "$ref": "_defs.schema.json#/definitions/url" }
-            }
+              "github": {
+                "$ref": "_defs.schema.json#/definitions/url"
+              },
+              "demo": {
+                "$ref": "_defs.schema.json#/definitions/url"
+              },
+              "paper": {
+                "$ref": "_defs.schema.json#/definitions/url"
+              }
+            },
+            "description": "Public repos/demos only — never link a private repository"
           }
         }
       }

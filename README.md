@@ -42,7 +42,7 @@ Each file has a comment at the top explaining its fields. Some conventions:
   tags: [Kubernetes, vLLM]
 ```
 
-**Add a project:** add an entry under `items` in `projects.yaml`. Its `category` must be one of the ids in `categories`. To link a repo or demo, add `links: { github: https://…, demo: https://… }`.
+**Add a project:** add an entry under `items` in `projects.yaml` with a `date` (`"YYYY-MM"`) and a `priority` (1–100; higher shows first, so keep simple projects low). Its `category` must be one of the ids in `categories`. To link a **public** repo or demo, add `links: { github: https://…, demo: https://… }`; never link a private repo. Mark a guessed date with `date_estimated: true` so it's easy to find and confirm later.
 
 **Add a social link:** add an entry to `links` in `profile.yaml`. It appears on the home page, the contact page and in the footer.
 

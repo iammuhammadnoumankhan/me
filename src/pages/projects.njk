@@ -18,10 +18,13 @@ permalink: /pages/projects.html
     </div>
 
     <div class="projects-grid" id="projects-grid">
-      {%- for p in projects.items | selectattr("featured") %}
+      {%- for p in projects.items | selectattr("featured") | byPriority %}
       <div class="project-card featured reveal" data-cat="{{ p.category }}">
         <div class="pcard-main">
-          <div class="pcard-num">{{ p.label or "FEATURED" }}</div>
+          <div class="pcard-top">
+            <div class="pcard-num">{{ p.label or "FEATURED" }}</div>
+            <div class="pcard-date">{{ p | projectDate }}</div>
+          </div>
           <div class="pcard-name">{{ p.name }}</div>
           <div class="pcard-desc">{{ p.description | md | safe }}</div>
           <div class="pcard-tags">
@@ -39,9 +42,12 @@ permalink: /pages/projects.html
       </div>
       {%- endfor %}
 
-      {%- for p in projects.items | rejectattr("featured") %}
+      {%- for p in projects.items | rejectattr("featured") | byPriority %}
       <div class="project-card reveal" data-cat="{{ p.category }}">
-        <div class="pcard-num">{{ p.label or ("PROJECT_" + (loop.index | pad2)) }}</div>
+        <div class="pcard-top">
+          <div class="pcard-num">{{ p.label or ("PROJECT_" + (loop.index | pad2)) }}</div>
+          <div class="pcard-date">{{ p | projectDate }}</div>
+        </div>
         <div class="pcard-name">{{ p.name }}</div>
         <div class="pcard-desc">{{ p.description | md | safe }}</div>
         <div class="pcard-tags">

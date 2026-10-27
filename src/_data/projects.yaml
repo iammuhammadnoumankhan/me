@@ -2,16 +2,21 @@
 # Projects page. `categories` drive the filter buttons; each project's `category` must match a category id.
 #
 # Project fields:
-#   name, description, category, tags  (required)
-#   featured : true to show as the wide card at the top (with `stats`)
-#   label    : overrides the auto "PROJECT_01" numbering
-#   links    : optional { github, demo, paper } URLs — shown as buttons on the card
+#   name, category, date, priority, description, tags  (required)
+#   date           : "YYYY-MM" — when it was built (or started, if `ongoing: true`)
+#   date_estimated : true = tentative date to confirm later (not shown on the site)
+#   priority       : 1–100, higher shows first; keep simple projects low. Featured projects always lead.
+#   featured       : true to show as the wide card at the top (with `stats`)
+#   label          : overrides the auto "PROJECT_01" numbering
+#   links          : optional { github, demo, paper } — PUBLIC repos only, never link a private repo
 
 categories:
   - id: mlops
-    label: MLOPS
+    label: MLOPS / INFRA
   - id: llm
     label: LLM / RAG
+  - id: speech
+    label: SPEECH AI
   - id: cv
     label: COMPUTER VISION
   - id: genai
@@ -24,6 +29,9 @@ items:
     featured: true
     label: FYP — FINAL YEAR PROJECT
     category: mlops
+    date: "2024-12"
+    date_estimated: true
+    priority: 90
     description: >-
       Cloud-native AI deployment platform with end-to-end MLOps workflows. Includes a model registry,
       experiment tracking, workflow automation, and one-click deployment to production. Built as the
@@ -37,78 +45,168 @@ items:
       - value: FYP
         label: PROJECT_TYPE
 
-  - name: Attention-Based Glaucoma Detection
+  # Private repository — do not add links
+  - name: Sadaa — ASR Annotation Platform
+    category: speech
+    date: "2026-07"
+    ongoing: true
+    priority: 95
+    description: >-
+      Event-driven speech annotation platform: raw audio or video in, versioned, word-level-timestamped
+      speech datasets out — via automatic transcription, forced alignment, and multi-annotator human review.
+      Every ASR, aligner and verifier model is a pluggable REST endpoint, so it works for any language.
+    tags: [FastAPI, PostgreSQL, Redis Streams, MinIO, Forced Alignment, ASR]
+
+  # Private repository — do not add links
+  - name: SecureFace — Face Recognition with Anti-Spoofing
     category: cv
+    date: "2026-01"
+    priority: 88
     description: >-
-      CNN with a custom attention mechanism for automated glaucoma detection from retinal scan imagery.
-      High-precision classification for early diagnosis support in medical imaging workflows.
-    tags: [CNN, Attention Mechanism, Medical AI, PyTorch]
+      Low-latency face recognition with anti-spoofing and liveness detection: InsightFace for detection and
+      recognition, MiniFASNetV2 (ONNX) to reject photos and screens, asynchronous multi-camera processing,
+      Norfair tracking, and FAISS vector search.
+    tags: [InsightFace, ONNX, Anti-Spoofing, FAISS, Multi-Camera]
 
-  - name: Tax & Finance Chatbot
-    category: llm
+  - name: GOT-OCR 2.0 Microservice
+    category: cv
+    date: "2025-02"
+    priority: 85
     description: >-
-      Domain-specific RAG chatbot with a curated knowledge base using LangChain and OpenAI. Handles complex
-      tax and finance queries with context-aware responses and citation retrieval.
-    tags: [LangChain, RAG, OpenAI, Knowledge Base]
+      OCR microservice built on GOT-OCR 2.0 with Transformers and FastAPI: plain and formatted text
+      (LaTeX/Markdown), region-specific OCR, multi-page documents, and sheet-music and math-formula
+      recognition, with GPU acceleration.
+    tags: [GOT-OCR 2.0, Transformers, FastAPI, CUDA, OCR]
+    links:
+      github: https://github.com/iammuhammadnoumankhan/FastAPI-GOT-OCR-2-Transformers
 
-  - name: DeepSeek Trading Analysis
-    category: llm
+  - name: Whisper Transcription Service
+    category: speech
+    date: "2025-03"
+    priority: 84
     description: >-
-      Financial data extraction and AI-powered market analysis leveraging LLM insights for actionable trading
-      intelligence, pattern recognition, and automated market summary generation.
-    tags: [LLM, Finance, Data Extraction, DeepSeek]
+      Production-ready speech-to-text API built on faster-whisper (CTranslate2): all Whisper models up to
+      large-v3 and distil, word-level timestamps, voice-activity detection, batched inference and background
+      jobs, with CUDA and Docker support.
+    tags: [faster-whisper, FastAPI, CUDA, Docker, VAD]
+    links:
+      github: https://github.com/iammuhammadnoumankhan/Whisper-FastAPI-Transcription-Service
+
+  - name: Multi-Node OpenMPI HPC Cluster
+    category: mlops
+    date: "2024-12"
+    priority: 80
+    description: >-
+      Five-node high-performance computing cluster for parallel workloads — network, SSH, NFS shared
+      storage and OpenMPI configuration — documented end-to-end as a step-by-step build guide with testing
+      and troubleshooting.
+    tags: [OpenMPI, HPC, NFS, Linux, Parallel Computing]
+    links:
+      github: https://github.com/iammuhammadnoumankhan/OpenMPI-Cluster
 
   - name: Fine-Tune Whisper on Quranic Data
-    category: llm
+    category: speech
+    date: "2024-10"
+    date_estimated: true
+    priority: 78
     description: >-
       Custom ASR fine-tuning pipeline for the Whisper model on a Quranic speech dataset. Full data
       preprocessing, speech-to-text fine-tuning, and evaluation on domain-specific audio.
     tags: [Whisper, ASR, Fine-Tuning, HuggingFace]
 
+  - name: Attention-Based Glaucoma Detection
+    category: cv
+    date: "2024-04"
+    date_estimated: true
+    priority: 72
+    description: >-
+      CNN with a custom attention mechanism for automated glaucoma detection from retinal scan imagery.
+      High-precision classification for early diagnosis support in medical imaging workflows.
+    tags: [CNN, Attention Mechanism, Medical AI, PyTorch]
+
+  # Private repository — do not add links
+  - name: DeepSeek Trading Analysis
+    category: llm
+    date: "2025-03"
+    priority: 65
+    description: >-
+      Financial data extraction and AI-powered market analysis leveraging LLM insights for actionable trading
+      intelligence, pattern recognition, and automated market summary generation.
+    tags: [LLM, Finance, Data Extraction, DeepSeek]
+
+  - name: Tax & Finance Chatbot
+    category: llm
+    date: "2024-06"
+    date_estimated: true
+    priority: 60
+    description: >-
+      Domain-specific RAG chatbot with a curated knowledge base using LangChain and OpenAI. Handles complex
+      tax and finance queries with context-aware responses and citation retrieval.
+    tags: [LangChain, RAG, OpenAI, Knowledge Base]
+
   - name: Inventory Management (YOLOv8)
     category: cv
+    date: "2023-11"
+    date_estimated: true
+    priority: 58
     description: >-
       Real-time object detection for retail analytics using YOLOv8. Automates inventory tracking with live
       camera feeds, bounding box detection, and backend database synchronization.
     tags: [YOLOv8, Object Detection, Retail AI, Real-Time]
 
-  - name: Facial Attendance System
-    category: edge
-    description: >-
-      Real-time facial recognition system deployed on edge devices (Raspberry Pi) with full database
-      integration for automated attendance management and record keeping.
-    tags: [Edge AI, Face Recognition, Raspberry Pi, OpenCV]
-
-  - name: Solar Irradiance Forecasting
-    category: edge
-    description: >-
-      Time-series forecasting model for smart building energy optimization. Predicts solar irradiance to guide
-      HVAC and energy load management. Achieved 4th place at Uraan Exhibition 2023.
-    tags: [Forecasting, Time-Series, Smart Buildings, Award 🏅]
-
   - name: AI Blog Generator
-    category: llm
+    category: genai
+    date: "2024-07"
+    priority: 55
     description: >-
-      Automated content generation pipeline using NLP summarization and Django. Transforms source documents
-      into structured blog posts with consistent tone and automatic publishing workflows.
-    tags: [NLP, Summarization, Django, Automation]
-
-  - name: App Feedback Analyzer
-    category: llm
-    description: >-
-      End-to-end NLP pipeline for app store review analysis. Web scraping, sentiment classification, topic
-      modeling, and interactive data visualization dashboards for product teams.
-    tags: [Sentiment Analysis, NLP, Web Scraping, Visualization]
+      Django web app that turns YouTube videos into blog articles: downloads the audio with yt-dlp,
+      transcribes it with AssemblyAI, and writes the post with Llama 3.1 via Groq. Includes user accounts,
+      saved blogs per user, an admin panel, and PostgreSQL storage.
+    tags: [Django, Llama 3.1, AssemblyAI, PostgreSQL, yt-dlp]
+    links:
+      github: https://github.com/iammuhammadnoumankhan/AI-Blog-Generator
 
   - name: Django AI Model Hub
     category: genai
+    date: "2023-07"
+    priority: 52
     description: >-
       1st Place — Uraan Projects Exhibition Fall 2023. A Django web platform hosting multiple deployed AI models
       accessible via a unified UI, including image generation, classification, and text tasks.
     tags: [Django, Multi-Model, Web App, 1st Place 🥇]
 
+  - name: Solar Irradiance Forecasting
+    category: edge
+    date: "2023-02"
+    priority: 50
+    description: >-
+      Time-series forecasting model for smart building energy optimization. Predicts solar irradiance to guide
+      HVAC and energy load management. Achieved 4th place at Uraan Exhibition 2023.
+    tags: [Forecasting, Time-Series, Smart Buildings, Award 🏅]
+
+  - name: App Feedback Analyzer
+    category: llm
+    date: "2023-12"
+    date_estimated: true
+    priority: 45
+    description: >-
+      End-to-end NLP pipeline for app store review analysis. Web scraping, sentiment classification, topic
+      modeling, and interactive data visualization dashboards for product teams.
+    tags: [Sentiment Analysis, NLP, Web Scraping, Visualization]
+
+  - name: Facial Attendance System
+    category: edge
+    date: "2022-09"
+    priority: 42
+    description: >-
+      Real-time facial recognition system deployed on edge devices (Raspberry Pi) with full database
+      integration for automated attendance management and record keeping.
+    tags: [Edge AI, Face Recognition, Raspberry Pi, OpenCV]
+
   - name: Data Scrapers & Automation Suite
     category: mlops
+    date: "2023-08"
+    priority: 40
     description: >-
       Collection of production-grade web scrapers and automation tools. Includes Selenium-based browser
       automation, BeautifulSoup parsers, and scheduled Crawl4AI pipelines for structured data extraction.

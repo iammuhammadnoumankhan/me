@@ -81,8 +81,7 @@ li { margin-bottom: 1pt; padding-left: 1pt; }
 li::marker { color: var(--accent); }
 .tech { margin-top: 2pt; font-size: 8.6pt; color: var(--muted); }
 .tech b { color: var(--ink); font-weight: 500; }
-.links { font-size: 8.6pt; color: var(--accent); }
-.links a + a::before { content: " · "; color: var(--rule); }
+.links { font-size: 8.6pt; font-weight: 500; color: var(--accent); }
 
 /* Skills */
 .skills { display: grid; grid-template-columns: 44mm 1fr; column-gap: 8pt; row-gap: 2.5pt; }
@@ -159,14 +158,13 @@ li::marker { color: var(--accent); }
   {%- for p in cvProjects %}
   <div class="entry">
     <div class="entry-head">
-      <div class="entry-title">{{ p.name }}</div>
-      {%- if p.links %}
-      <div class="links">
-        {%- if p.links.github %}<a href="{{ p.links.github }}">GitHub</a>{% endif -%}
-        {%- if p.links.demo %}<a href="{{ p.links.demo }}">Demo</a>{% endif -%}
-        {%- if p.links.paper %}<a href="{{ p.links.paper }}">Paper</a>{% endif -%}
-      </div>
-      {%- endif %}
+      <div class="entry-title">{{ p.name }}
+        {%- if p.links %}<span class="links">
+        {%- if p.links.github %} · <a href="{{ p.links.github }}">GitHub</a>{% endif -%}
+        {%- if p.links.demo %} · <a href="{{ p.links.demo }}">Demo</a>{% endif -%}
+        {%- if p.links.paper %} · <a href="{{ p.links.paper }}">Paper</a>{% endif -%}
+        </span>{% endif %}</div>
+      <div class="entry-date">{{ p.date | cvDate }}{% if p.ongoing %} – Present{% endif %}</div>
     </div>
     <div>{{ p.description | md | safe }}</div>
   </div>
