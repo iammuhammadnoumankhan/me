@@ -25,7 +25,7 @@ home:
     - page: projects
       code: PROJ_04
       title: Projects
-      text: AI Studio, Glaucoma Detection & 10+ more builds
+      text: AI Studio, Glaucoma Detection & more builds
     - page: research
       code: RES_05
       title: Research
@@ -75,7 +75,7 @@ about:
       sub: Pak-Austria Fachhochschule
     - label: GPU INFRA
       value: NVIDIA DGX
-      sub: A100 / H100 cluster management # TODO(confirm): experience.yaml says H100/H200
+      sub: Consumer & data-center GPU clusters
     - label: CERTIFICATIONS
       value: CKAD Certified
       sub: Kubernetes Application Developer
@@ -106,13 +106,13 @@ experience:
       accent: true
     - label: GPU_EXPERTISE
       value: NVIDIA DGX
-      sub: A100 · H100 · Distributed training # TODO(confirm): experience.yaml says H100/H200
+      sub: RTX 4090/5090 · V100 · H200
     - label: K8S_MANAGEMENT
       value: Kubeadm + BCM
       sub: Terraform · Bare-metal clusters
     - label: INFERENCE
       value: vLLM + Triton
-      sub: FP8/INT8 · Tensor parallelism # TODO(confirm): experience.yaml says INT4/INT8
+      sub: Quantization · Tensor parallelism
   cta: OPEN TO WORK →
 
 skills:

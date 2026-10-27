@@ -9,7 +9,7 @@ groups:
     icon: ⚡
     skills:
       - { name: NVIDIA DGX Systems, core: true }
-      - { name: A100 / H100 GPUs, core: true } # TODO(confirm): experience.yaml says H100/H200
+      - { name: Consumer & Data-Center GPUs, core: true }
       - { name: GPU-Accelerated Computing, core: true }
       - Distributed Training
       - CUDA Workloads
@@ -24,7 +24,7 @@ groups:
       - { name: vLLM, core: true }
       - { name: Triton Inference Server, core: true }
       - { name: Inference Optimization, core: true }
-      - Quantization (INT4/INT8)
+      - Quantization
       - Tensor Parallelism
       - Continuous Batching
       - Model Scaling

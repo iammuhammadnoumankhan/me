@@ -56,8 +56,6 @@ stats:
     label: Published
   - auto: roles
     label: Roles & Internships
-  - value: 500+ # TODO(confirm): only 12 projects are listed — is 500+ a real count (e.g. freelance gigs)?
-    label: AI Projects
 
 # The two floating badges on the home page portrait.
 portrait_stats:

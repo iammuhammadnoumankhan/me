@@ -12,13 +12,13 @@
   location: Islamabad, Pakistan
   start: "2025-08"
   highlights:
-    - Provisioned and managed **NVIDIA DGX systems** and GPU nodes (H100, H200) for distributed AI model training and high-throughput inference workloads.
+    - Provisioned and managed **NVIDIA DGX systems** alongside consumer and data-center GPUs (RTX 4090/5090, V100, H200) for distributed AI model training and high-throughput inference workloads.
     - Managed Kubernetes clusters using **Kubeadm, Terraform, and BCM (Base Command Manager)** for high-availability production environments.
-    - Built AI model serving infrastructure using **vLLM and Triton Inference Server**; applied quantization (INT4/INT8), tensor parallelism, and continuous batching to maximize GPU utilization.
+    - Built AI model serving infrastructure using **vLLM and Triton Inference Server**; applied quantization, tensor parallelism, and continuous batching to maximize GPU utilization.
     - Implemented **model scaling strategies** including horizontal pod autoscaling and GPU-aware K8s scheduling to handle variable production loads.
     - Designed end-to-end ML pipelines with CI/CD, Docker, and cloud-native workflows on AWS, GCP, and Azure — from model development to production.
     - Deployed comprehensive monitoring, alerting, and observability stacks for production AI models ensuring SLA compliance.
-  tags: [NVIDIA DGX, H100/H200, Kubernetes, Kubeadm, Terraform, BCM, vLLM, Triton, Kserve, Docker, CI/CD, AWS, GCP]
+  tags: [NVIDIA DGX, RTX 4090/5090, V100/H200, Kubernetes, Kubeadm, Terraform, BCM, vLLM, Triton, Kserve, Docker, CI/CD, AWS, GCP]
 
 - role: AI Engineer
   company: iQera Schools
