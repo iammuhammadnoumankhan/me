@@ -6,12 +6,15 @@
   "scripts": {
     "start": "eleventy --serve",
     "build": "eleventy",
-    "validate": "node scripts/validate.js"
+    "validate": "node scripts/validate.js",
+    "cv": "eleventy && node scripts/cv-pdf.js"
   },
   "devDependencies": {
     "@11ty/eleventy": "3.1.7",
+    "@11ty/eleventy-img": "7.0.0",
     "ajv": "8.20.0",
     "js-yaml": "5.5.0",
-    "markdown-it": "15.0.3"
+    "markdown-it": "15.0.3",
+    "puppeteer-core": "25.13.0"
   }
 }

@@ -1,0 +1,14 @@
+{
+  "$id": "cv.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "cv.yaml",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["filename"],
+  "properties": {
+    "filename": { "type": "string", "pattern": "^[A-Za-z0-9._-]+\\.pdf$" },
+    "headline": { "$ref": "_defs.schema.json#/definitions/text" },
+    "projects": { "type": "array", "items": { "type": "string" }, "description": "Exact names from projects.yaml" },
+    "show_tech": { "type": "boolean" }
+  }
+}

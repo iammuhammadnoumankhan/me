@@ -20,6 +20,7 @@ permalink: /index.html
           <a href="{{ pages.experience.url | rel(page.url) }}" class="btn-primary">VIEW_EXPERIENCE →</a>
           <a href="{{ pages.projects.url | rel(page.url) }}" class="btn-secondary">PROJECTS</a>
           <a href="{{ pages.contact.url | rel(page.url) }}" class="btn-ghost">CONTACT</a>
+          <a href="{{ ('/' + cv.filename) | rel(page.url) }}" class="btn-ghost" download>DOWNLOAD_CV ↓</a>
         </div>
         <div class="hero-socials">
           {%- for link in profile.links %}
@@ -41,12 +42,7 @@ permalink: /index.html
       <!-- Portrait -->
       <div class="portrait-wrap">
         <div class="portrait-card">
-          <img src="{{ ('/' + profile.photo) | rel(page.url) }}" alt="{{ profile.name }}" width="300" height="360" fetchpriority="high"
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="portrait-placeholder" style="display:none">
-            <div class="initials">{{ profile.initials }}</div>
-            <div class="p-hint">Add {{ profile.photo }}<br>to src folder</div>
-          </div>
+          {% photo profile.photo, profile.name, { fetchpriority: "high", loading: "eager" } %}
         </div>
         {%- for s in profile.portrait_stats %}
         <div class="portrait-stat {{ 'stat-tl' if loop.first else 'stat-br' }}">

@@ -2,7 +2,7 @@
 
 Personal portfolio site for Muhammad Nouman Khan: AI engineering, MLOps, research and freelance work.
 
-**All content lives in YAML files.** The pages are templates that read those files, so you update the site by editing data, never HTML. Every push to `main` validates the data, builds the site with [Eleventy](https://www.11ty.dev/) and deploys it to GitHub Pages.
+**All content lives in YAML files.** The pages are templates that read those files, so you update the site by editing data, never HTML. Every push to `main` validates the data, builds the site with [Eleventy](https://www.11ty.dev/), generates a matching **PDF CV**, and deploys both to GitHub Pages. The website and CV come from the same data, so they never disagree.
 
 ## Updating content
 
@@ -17,7 +17,8 @@ Edit the file for what you want to change, then push:
 | `src/_data/research.yaml` | Publications and research interests | Research |
 | `src/_data/education.yaml` | Degrees, certifications and awards | About |
 | `src/_data/pages.yaml` | Page titles, SEO descriptions, hero text, nav order, page-specific cards | Every page |
-| `src/_data/site.yaml` | Public URL and language | `<head>` metadata |
+| `src/_data/site.yaml` | Public URL and language | `<head>` metadata, sitemap |
+| `src/_data/cv.yaml` | CV file name, headline and which projects to include | The PDF CV |
 
 Each file has a comment at the top explaining its fields. Some conventions:
 
@@ -45,6 +46,17 @@ Each file has a comment at the top explaining its fields. Some conventions:
 
 **Add a social link:** add an entry to `links` in `profile.yaml`. It appears on the home page, the contact page and in the footer.
 
+## The PDF CV
+
+The build turns `src/pages/cv.njk` into `cv.html`, then prints it to `Muhammad-Nouman-Khan-CV.pdf` with headless Chrome. The site links to it from the home page and the contact page with "Download CV" buttons.
+
+- **Content** comes from `profile`, `experience`, `skills`, `projects`, `research` and `education`, so editing those updates the CV too.
+- **`cv.yaml`** sets the file name, the headline under your name, and which projects appear (keep it to 4–6 so the CV stays at two pages).
+- **ATS-friendly:** single column, real selectable text, standard section headings, embedded TrueType fonts, clickable links.
+- **Preview locally:** run `npm run cv`, then open `_site/Muhammad-Nouman-Khan-CV.pdf`, or open `_site/cv.html` in a browser.
+
+If you add content and the CV grows to three pages, drop a project from `cv.yaml` or trim a bullet point.
+
 ## Validation
 
 Each data file has a JSON Schema in `schemas/`. The build stops with a clear message if anything is wrong, for example:
@@ -59,13 +71,14 @@ A broken edit therefore never reaches the live site. In VS Code with the YAML ex
 
 ## Running locally
 
-Requires Node 22+.
+Requires Node 22+ and Google Chrome (used to print the CV; set `CHROME_PATH` if Chrome is installed somewhere unusual).
 
 ```bash
 npm install
-npm start          # dev server with live reload at http://localhost:8080
+npm start          # dev server with live reload at http://localhost:8080 (no PDF)
 npm run validate   # check the YAML files only
-npm run build      # produce the static site in _site/
+npm run build      # produce the static site and the CV PDF in _site/
+npm run cv         # same as build; handy after editing the CV template
 ```
 
 ## Project structure
@@ -76,13 +89,16 @@ src/
   _includes/
     layouts/base.njk  ← <head>, nav, footer shared by every page
     components/       ← nav, footer, page hero, section heading, icons, project links
-  pages/              ← one template per page
+  pages/              ← one template per page, plus cv.njk (the CV) and sitemap.njk
   css/style.css       ← design tokens and shared styles
   css/pages/          ← page-specific styles
   js/                 ← nav/scroll behaviour, project filter, skill bars
-  profile.jpeg
+  fonts/              ← self-hosted Syne, DM Sans, JetBrains Mono (+ static cuts in fonts/cv/ for the PDF)
+  assets/             ← favicon and app icons, copied to the site root
+  profile.jpeg        ← resized and converted to WebP/JPEG at build time
 schemas/              ← JSON Schemas for each data file
 scripts/validate.js   ← schema and cross-reference checks, run before every build
+scripts/cv-pdf.js     ← prints cv.html to PDF after every production build
 eleventy.config.js    ← build config and template filters
 .github/workflows/deploy.yml
 ```

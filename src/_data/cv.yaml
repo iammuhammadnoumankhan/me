@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=../../schemas/cv.schema.json
+# Settings for the downloadable CV (PDF). Its content comes from the other data files:
+# profile, experience, skills, projects, research and education — edit those, not this.
+
+# File name visitors download
+filename: Muhammad-Nouman-Khan-CV.pdf
+
+# Title under your name on the CV (defaults to profile.headline)
+headline: AI Engineer · MLOps Engineer
+
+# Projects to include, by exact name from projects.yaml, in this order.
+# Keep it to your strongest 4–6 so the CV stays at two pages.
+projects:
+  - AI Studio
+  - Attention-Based Glaucoma Detection
+  - Tax & Finance Chatbot
+  - Fine-Tune Whisper on Quranic Data
+  - Inventory Management (YOLOv8)
+
+# Show each job's tag list as a "Tech:" line (good for keyword-matching ATS)
+show_tech: true

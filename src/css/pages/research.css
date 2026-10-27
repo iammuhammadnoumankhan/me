@@ -18,7 +18,7 @@
 }
 .pub-badge {
   font-family: var(--font-mono); font-size: 10px;
-  color: var(--on-surface-dim);
+  color: var(--on-surface-var);
   background: var(--surface-highest);
   border: 1px solid var(--outline);
   padding: 2px 10px; border-radius: 20px; letter-spacing: 0.04em;

@@ -16,7 +16,7 @@ permalink: /pages/about.html
         <p>{{ para | md | safe }}</p>
         {%- endfor %}
         {%- if profile.community and profile.community.length %}
-        <h3>Community</h3>
+        <h2>Community</h2>
         {%- for c in profile.community %}
         <div class="community-card">
           <h3>{{ c.title }}</h3>

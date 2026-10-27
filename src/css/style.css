@@ -1,3 +1,9 @@
+/* ─── FONTS (self-hosted variable fonts, SIL Open Font License) ─── */
+@font-face { font-family: 'Syne'; src: url('../fonts/syne.woff2') format('woff2'); font-weight: 400 800; font-style: normal; font-display: swap; }
+@font-face { font-family: 'DM Sans'; src: url('../fonts/dm-sans.woff2') format('woff2'); font-weight: 300 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'DM Sans'; src: url('../fonts/dm-sans-italic.woff2') format('woff2'); font-weight: 300 700; font-style: italic; font-display: swap; }
+@font-face { font-family: 'JetBrains Mono'; src: url('../fonts/jetbrains-mono.woff2') format('woff2'); font-weight: 400 500; font-style: normal; font-display: swap; }
+
 /* ─── DESIGN TOKENS ──────────────────────────────── */
 :root {
   --bg:               #0e0e0e;
@@ -14,7 +20,7 @@
 
   --on-surface:       #e2e2e2;
   --on-surface-var:   #9a9a9a;
-  --on-surface-dim:   #7a7a7a; /* 4.5:1 on --bg (was #555, 2.6:1) */
+  --on-surface-dim:   #8e8e8e; /* ≥4.5:1 on --bg and card surfaces (was #555, 2.6:1) */
   --outline:          rgba(255,255,255,0.07);
   --outline-hover:    rgba(0,242,255,0.25);
 

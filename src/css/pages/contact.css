@@ -106,6 +106,7 @@
 
 /* Classes used by the templates (replace former inline styles) */
 .contact-intro strong { color: var(--on-surface); }
+.contact-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 .contact-cta { font-size: 14px; }
 .contact-layout .availability-card { margin-top: 32px; }
 .contact-link-item.is-static { cursor: default; }

@@ -1,0 +1,228 @@
+---
+permalink: /cv.html
+eleventyExcludeFromCollections: true
+---
+{#- Printable CV. Built from the same data files as the site and printed to PDF
+    (cv.filename) after every production build — see scripts/cv-pdf.js. -#}
+{%- set cvLinks = profile.links | cvLinks -%}
+<!DOCTYPE html>
+<html lang="{{ site.lang }}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ profile.name }} — CV</title>
+<meta name="author" content="{{ profile.name }}">
+<meta name="description" content="CV of {{ profile.name }}, {{ cv.headline or profile.headline }}.">
+<meta name="robots" content="noindex">
+<style>
+/* Static (non-variable) instances so Chrome embeds real TrueType fonts in the PDF, not Type 3 */
+@font-face { font-family: 'Syne'; src: url('fonts/cv/syne-700.ttf') format('truetype'); font-weight: 700; }
+@font-face { font-family: 'DM Sans'; src: url('fonts/cv/dm-sans-400.ttf') format('truetype'); font-weight: 400; }
+@font-face { font-family: 'DM Sans'; src: url('fonts/cv/dm-sans-500.ttf') format('truetype'); font-weight: 500; }
+@font-face { font-family: 'DM Sans'; src: url('fonts/cv/dm-sans-700.ttf') format('truetype'); font-weight: 700; }
+@font-face { font-family: 'DM Sans'; src: url('fonts/cv/dm-sans-400-italic.ttf') format('truetype'); font-weight: 400; font-style: italic; }
+:root {
+  --ink: #16191a;
+  --muted: #555e60;
+  --accent: #006a71;
+  --rule: #c9d5d6;
+}
+@page { size: A4; margin: 10mm 14mm 10mm; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { background: #fff; }
+body {
+  font-family: 'DM Sans', Arial, sans-serif;
+  font-size: 9.1pt;
+  line-height: 1.36;
+  color: var(--ink);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+@media screen {
+  html { background: #e8ecec; }
+  body { width: 210mm; min-height: 297mm; margin: 24px auto; padding: 10mm 14mm; background: #fff; box-shadow: 0 2px 16px rgba(0,0,0,0.12); }
+}
+a { color: inherit; text-decoration: none; }
+
+/* Header */
+header { margin-bottom: 8pt; }
+h1 {
+  font-family: 'Syne', 'DM Sans', Arial, sans-serif;
+  font-size: 22pt; font-weight: 700; letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+.headline { font-size: 11pt; font-weight: 500; color: var(--accent); margin-top: 2pt; }
+.contact { margin-top: 1.5pt; font-size: 8.8pt; color: var(--muted); }
+.headline + .contact { margin-top: 5pt; }
+.contact span + span::before { content: "·"; margin: 0 5pt; color: var(--rule); }
+.contact a { color: var(--ink); }
+
+/* Sections */
+section { margin-top: 8pt; }
+h2 {
+  font-size: 9.5pt; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase;
+  color: var(--accent);
+  border-bottom: 0.75pt solid var(--rule);
+  padding-bottom: 2pt; margin-bottom: 5pt;
+  break-after: avoid;
+}
+.summary { color: var(--ink); }
+
+/* Entries (jobs, projects, education) */
+.entry { margin-bottom: 6pt; break-inside: avoid; }
+.entry:last-child { margin-bottom: 0; }
+.entry-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12pt; }
+.entry-title { font-weight: 700; }
+.entry-title .org { font-weight: 500; }
+.entry-date { font-size: 8.8pt; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.entry-sub { font-size: 8.8pt; color: var(--muted); font-style: italic; }
+ul { margin: 2.5pt 0 0 11pt; }
+li { margin-bottom: 1pt; padding-left: 1pt; }
+li::marker { color: var(--accent); }
+.tech { margin-top: 2pt; font-size: 8.6pt; color: var(--muted); }
+.tech b { color: var(--ink); font-weight: 500; }
+.links { font-size: 8.6pt; color: var(--accent); }
+.links a + a::before { content: " · "; color: var(--rule); }
+
+/* Skills */
+.skills { display: grid; grid-template-columns: 44mm 1fr; column-gap: 8pt; row-gap: 2.5pt; }
+.skills dt { font-weight: 700; }
+.skills dd { color: var(--ink); }
+
+.plain-list { list-style: none; margin: 0; }
+.plain-list li { margin-bottom: 2pt; padding: 0; }
+.muted { color: var(--muted); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>{{ profile.name }}</h1>
+  <div class="headline">{{ cv.headline or profile.headline }}</div>
+  <div class="contact">
+    <span>{{ profile.location }}</span>
+    {%- for l in cvLinks %}{% if l.id == "email" %}
+    <span><a href="{{ l.url }}">{{ l.text }}</a></span>
+    {%- endif %}{% endfor %}
+    <span><a href="{{ site.url }}/">{{ site.url | displayUrl }}</a></span>
+  </div>
+  <div class="contact">
+    {%- for l in cvLinks %}{% if l.id != "email" %}
+    <span><a href="{{ l.url }}">{{ l.text }}</a></span>
+    {%- endif %}{% endfor %}
+  </div>
+</header>
+
+<section>
+  <h2>Summary</h2>
+  <p class="summary">{{ profile.summary | md | safe }}</p>
+</section>
+
+<section>
+  <h2>Experience</h2>
+  {%- for job in experience %}
+  <div class="entry">
+    <div class="entry-head">
+      <div class="entry-title">{{ job.role }}<span class="org"> — {{ job.company }}</span></div>
+      <div class="entry-date">{{ job.start | cvDate }} – {{ (job.end | cvDate) if job.end else "Present" }}</div>
+    </div>
+    <div class="entry-sub">
+      {{- ("Remote (" + job.location + ")") if job.remote else job.location -}}
+      {%- if job.type %} · {{ job.type | capitalize }}{% endif -%}
+    </div>
+    <ul>
+      {%- for h in job.highlights %}
+      <li>{{ h | md | safe }}</li>
+      {%- endfor %}
+    </ul>
+    {%- if cv.show_tech and job.tags and job.tags.length %}
+    <div class="tech"><b>Tech:</b> {{ job.tags | join(", ") }}</div>
+    {%- endif %}
+  </div>
+  {%- endfor %}
+</section>
+
+<section>
+  <h2>Skills</h2>
+  <dl class="skills">
+    {%- for g in skills.groups | cvSkills %}
+    <dt>{{ g.title }}</dt>
+    <dd>{{ g.skills | join(", ") }}</dd>
+    {%- endfor %}
+  </dl>
+</section>
+
+{%- set cvProjects = projects.items | pickByName(cv.projects) %}
+{%- if cvProjects.length %}
+<section>
+  <h2>Selected Projects</h2>
+  {%- for p in cvProjects %}
+  <div class="entry">
+    <div class="entry-head">
+      <div class="entry-title">{{ p.name }}</div>
+      {%- if p.links %}
+      <div class="links">
+        {%- if p.links.github %}<a href="{{ p.links.github }}">GitHub</a>{% endif -%}
+        {%- if p.links.demo %}<a href="{{ p.links.demo }}">Demo</a>{% endif -%}
+        {%- if p.links.paper %}<a href="{{ p.links.paper }}">Paper</a>{% endif -%}
+      </div>
+      {%- endif %}
+    </div>
+    <div>{{ p.description | md | safe }}</div>
+  </div>
+  {%- endfor %}
+</section>
+{%- endif %}
+
+{%- if research.publications and research.publications.length %}
+<section>
+  <h2>Publications</h2>
+  <ul class="plain-list">
+    {%- for pub in research.publications %}
+    <li>
+      {%- for a in pub.authors -%}
+        {%- if not loop.first %}{{ ", and " if loop.last else ", " }}{% endif -%}
+        {%- if a.me %}<b>{{ a.name }}</b>{% else %}{{ a.name }}{% endif -%}
+      {%- endfor %},
+      “{% if pub.url %}<a href="{{ pub.url }}">{{ pub.title }}</a>{% else %}{{ pub.title }}{% endif %},”
+      in <i>{{ pub.venue_full or pub.venue }}</i>, {{ pub.publisher }}, {{ pub.date | citationDate }}{% if pub.pages %}, pp. {{ pub.pages }}{% endif %}.
+      {%- if pub.doi %} doi: <a href="https://doi.org/{{ pub.doi }}">{{ pub.doi }}</a>.{% endif %}
+      {%- if pub.collaboration %} <span class="muted">In collaboration with the {{ pub.collaboration }}.</span>{% endif %}
+    </li>
+    {%- endfor %}
+  </ul>
+</section>
+{%- endif %}
+
+{%- if education.degrees and education.degrees.length %}
+<section>
+  <h2>Education</h2>
+  {%- for d in education.degrees %}
+  <div class="entry">
+    <div class="entry-head">
+      <div class="entry-title">{{ d.degree }}<span class="org"> — {{ d.school }}</span></div>
+      <div class="entry-date">{{ d.start | year }} – {{ (d.end | year) if d.end else "Present" }}</div>
+    </div>
+  </div>
+  {%- endfor %}
+</section>
+{%- endif %}
+
+{%- set hasCerts = education.certifications and education.certifications.length %}
+{%- set hasAwards = education.awards and education.awards.length %}
+{%- if hasCerts or hasAwards %}
+<section>
+  <h2>{{ "Certifications & Awards" if hasCerts and hasAwards else ("Certifications" if hasCerts else "Awards") }}</h2>
+  <ul class="plain-list">
+    {%- for c in education.certifications %}
+    <li><b>{{ c.name }}</b> <span class="muted">— {{ c.issuer }}</span></li>
+    {%- endfor %}
+    {%- for a in education.awards %}
+    <li><b>{{ a.rank }} Place, {{ a.title }}</b>{% if a.detail %} <span class="muted">— {{ a.detail }}</span>{% endif %}</li>
+    {%- endfor %}
+  </ul>
+</section>
+{%- endif %}
+
+</body>
+</html>

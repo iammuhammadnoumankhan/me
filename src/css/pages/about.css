@@ -11,7 +11,7 @@
   font-size: 15px;
 }
 .about-body p strong { color: var(--on-surface); font-weight: 500; }
-.about-body h3 {
+.about-body > h2, .about-body h3 {
   font-family: var(--font-display);
   font-size: 18px; font-weight: 700;
   color: var(--on-surface);
@@ -50,7 +50,7 @@
 }
 .edu-badge .bl {
   font-family: var(--font-mono); font-size: 10px;
-  color: var(--on-surface-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 3px;
+  color: #b3b3b3; /* lighter than --on-surface-dim: sits on the teal badge */ letter-spacing: 0.08em; text-transform: uppercase; margin-top: 3px;
 }
 
 /* Cert grid */

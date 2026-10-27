@@ -38,11 +38,17 @@ export function validate() {
   }
 
   // Cross-file references
-  const { projects, pages, experience } = data;
+  const { projects, pages, experience, cv } = data;
   if (projects?.items && projects?.categories) {
     const ids = new Set(projects.categories.map((c) => c.id));
     projects.items.forEach((p, i) => {
       if (!ids.has(p.category)) errors.push(`projects.yaml: /items/${i} category '${p.category}' is not one of: ${[...ids].join(", ")}`);
+    });
+  }
+  if (cv?.projects && projects?.items) {
+    const names = new Set(projects.items.map((p) => p.name));
+    cv.projects.forEach((n, i) => {
+      if (!names.has(n)) errors.push(`cv.yaml: /projects/${i} '${n}' is not a project name in projects.yaml`);
     });
   }
   if (pages?.home?.explore) {

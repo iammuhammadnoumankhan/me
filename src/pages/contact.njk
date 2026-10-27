@@ -20,7 +20,10 @@ permalink: /pages/contact.html
           <span class="interest-chip">{{ i }}</span>
           {%- endfor %}
         </div>
-        <a href="mailto:{{ profile.email }}" class="btn-primary reveal contact-cta">{{ contact.cta }}</a>
+        <div class="contact-actions reveal">
+          <a href="mailto:{{ profile.email }}" class="btn-primary contact-cta">{{ contact.cta }}</a>
+          <a href="{{ ('/' + cv.filename) | rel(page.url) }}" class="btn-secondary" download>DOWNLOAD_CV ↓</a>
+        </div>
 
         {%- if contact.availability and contact.availability.available %}
         <!-- Availability -->
