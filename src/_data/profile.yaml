@@ -1,0 +1,76 @@
+# yaml-language-server: $schema=../../schemas/profile.schema.json
+# Who you are. Used by the nav, footer, home hero, about page and contact page.
+# Text fields support inline markdown: **bold**, *italic*, [links](https://...).
+
+name: Muhammad Nouman Khan
+first_name: Muhammad
+last_name: Nouman Khan
+logo: MNK.PORTFOLIO
+initials: MNK
+
+headline: AI Engineer & Researcher
+tagline: Building Intelligence at Scale
+roles: [AI_ENGINEER, MLOPS, RESEARCHER]
+summary: >-
+  AI Engineer & MLOps Specialist with expertise in LLM inference,
+  GPU-accelerated computing, Kubernetes cluster management, and
+  production AI systems. IEEE published researcher. Based in Islamabad, Pakistan.
+
+location: Islamabad, Pakistan
+work_preference: Open to Remote
+email: iammuhammadnoumankhan@gmail.com
+photo: profile.jpeg
+
+# Social / freelance profiles. `icon` must be one of: github, linkedin, fiverr, upwork, email.
+# Order here = order on the home page, contact page and footer.
+links:
+  - id: github
+    label: GitHub
+    url: https://github.com/iammuhammadnoumankhan
+    handle: iammuhammadnoumankhan
+  - id: linkedin
+    label: LinkedIn
+    url: https://www.linkedin.com/in/muhammad-nouman-khan-248530233/
+    handle: muhammad-nouman-khan-248530233
+  - id: fiverr
+    label: Fiverr
+    url: https://www.fiverr.com/s/qDaY9a5
+    handle: fiverr.com/s/qDaY9a5
+  - id: upwork
+    label: Upwork
+    url: https://www.upwork.com/freelancers/~012aab2bdb181fe4b1?mp_source=share
+    handle: upwork.com/freelancers/~012aab2bdb181fe4b1
+  - id: email
+    label: Email
+    url: mailto:iammuhammadnoumankhan@gmail.com
+    handle: iammuhammadnoumankhan@gmail.com
+
+# Home page stats row. Use `value` for fixed text, or `auto` to compute from the data:
+#   years_experience -> from the earliest start date in experience.yaml (e.g. "4+")
+#   roles            -> number of entries in experience.yaml (e.g. "5+")
+#   projects         -> number of entries in projects.yaml
+stats:
+  - auto: years_experience
+    label: Years Experience
+  - value: IEEE
+    label: Published
+  - auto: roles
+    label: Roles & Internships
+  - value: 500+ # TODO(confirm): only 12 projects are listed — is 500+ a real count (e.g. freelance gigs)?
+    label: AI Projects
+
+# The two floating badges on the home page portrait.
+portrait_stats:
+  - auto: years_experience
+    label: Years Experience
+  - value: IEEE
+    label: Published
+
+# Shown on the About page under "Community".
+community:
+  - title: SolvrSphere — "Small Faults, Big Impact"
+    description: >-
+      Created interactive simulations to raise environmental sustainability awareness, visually
+      demonstrating how small everyday actions, when multiplied by millions, drive significant global
+      consequences — encouraging actionable steps toward a healthier planet.
+    tag: ENVIRONMENTAL_INITIATIVE

@@ -1,0 +1,24 @@
+{
+  "$id": "experience.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "experience.yaml",
+  "description": "Work history, newest first",
+  "type": "array",
+  "minItems": 1,
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["role", "company", "location", "start", "highlights"],
+    "properties": {
+      "role": { "$ref": "_defs.schema.json#/definitions/text" },
+      "company": { "$ref": "_defs.schema.json#/definitions/text" },
+      "type": { "enum": ["full-time", "part-time", "contract", "freelance", "internship"] },
+      "location": { "$ref": "_defs.schema.json#/definitions/text" },
+      "remote": { "type": "boolean" },
+      "start": { "$ref": "_defs.schema.json#/definitions/yearMonth" },
+      "end": { "$ref": "_defs.schema.json#/definitions/yearMonth", "description": "Omit for a current role" },
+      "highlights": { "type": "array", "minItems": 1, "items": { "$ref": "_defs.schema.json#/definitions/text" } },
+      "tags": { "$ref": "_defs.schema.json#/definitions/tags" }
+    }
+  }
+}

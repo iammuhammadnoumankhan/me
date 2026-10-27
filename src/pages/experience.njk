@@ -1,0 +1,66 @@
+---
+layout: layouts/base.njk
+pageId: experience
+pageCss: experience
+permalink: /pages/experience.html
+---
+{%- set exp = pages.experience -%}
+  {% include "components/page-hero.njk" %}
+
+  <div class="band-mid">
+  <div class="section">
+    <div class="exp-layout">
+      <!-- TIMELINE -->
+      <div class="timeline">
+        {%- for job in experience %}
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">
+            <span class="timeline-period">{{ job.start | dateRange(job.end) }}</span>
+            {%- if not job.end %}
+            <span class="timeline-badge current">CURRENT</span>
+            {%- endif %}
+            {%- if job.type %}
+            <span class="timeline-badge">{{ job.type | upper }}</span>
+            {%- endif %}
+            {%- if job.remote %}
+            <span class="timeline-badge">REMOTE · {{ job.location | upper }}</span>
+            {%- endif %}
+          </div>
+          <div class="timeline-role">{{ job.role }}</div>
+          <div class="timeline-company">
+            {{ job.company }}
+            <span class="timeline-location"><span aria-hidden="true">{{ "🌐" if job.remote else "📍" }}</span> {{ ("Remote (" + job.location + ")") if job.remote else job.location }}</span>
+          </div>
+          <ul class="timeline-bullets">
+            {%- for h in job.highlights %}
+            <li>{{ h | md | safe }}</li>
+            {%- endfor %}
+          </ul>
+          {%- if job.tags and job.tags.length %}
+          <div class="tl-tags">
+            {%- for t in job.tags %}
+            <span class="chip">{{ t }}</span>
+            {%- endfor %}
+          </div>
+          {%- endif %}
+        </div>
+        {%- endfor %}
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="exp-sidebar">
+        {%- for c in exp.sidebar %}
+        <div class="sidebar-card{% if c.accent %} role-type-ft{% endif %} reveal{% if loop.index <= 3 %} reveal-delay-{{ loop.index }}{% endif %}">
+          <div class="sc-label">{{ c.label }}</div>
+          <div class="sc-value">{{ c | statValue(auto) }}{{ c.suffix }}</div>
+          <div class="sc-sub">{{ c.sub }}</div>
+        </div>
+        {%- endfor %}
+        {%- if exp.cta %}
+        <a href="{{ pages.contact.url | rel(page.url) }}" class="btn-primary reveal sidebar-cta">{{ exp.cta }}</a>
+        {%- endif %}
+      </div>
+    </div>
+  </div>
+  </div>

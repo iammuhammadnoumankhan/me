@@ -1,0 +1,107 @@
+---
+layout: layouts/base.njk
+pageId: about
+pageCss: about
+permalink: /pages/about.html
+---
+{%- set about = pages.about -%}
+  {% include "components/page-hero.njk" %}
+
+  <!-- ABOUT GRID -->
+  <div class="band-mid">
+  <div class="section">
+    <div class="about-grid">
+      <div class="about-body reveal">
+        {%- for para in about.bio %}
+        <p>{{ para | md | safe }}</p>
+        {%- endfor %}
+        {%- if profile.community and profile.community.length %}
+        <h3>Community</h3>
+        {%- for c in profile.community %}
+        <div class="community-card">
+          <h3>{{ c.title }}</h3>
+          <p>{{ c.description | md | safe }}</p>
+          {% if c.tag %}<div class="community-tag">{{ c.tag }}</div>{% endif %}
+        </div>
+        {%- endfor %}
+        {%- endif %}
+      </div>
+
+      <div class="highlight-grid">
+        {%- for h in about.highlights %}
+        <div class="highlight-card reveal{% if loop.index <= 4 %} reveal-delay-{{ loop.index }}{% endif %}">
+          <div class="h-label">{{ h.label }}</div>
+          <div class="h-value">{{ h | statValue(auto) }}{{ h.suffix }}</div>
+          <div class="h-sub">{{ h.sub }}</div>
+        </div>
+        {%- endfor %}
+      </div>
+    </div>
+  </div>
+  </div>
+
+  {%- if education.degrees and education.degrees.length %}
+  <!-- EDUCATION -->
+  <div class="band">
+  <div class="section">
+    {% set section = about.sections.education %}{% include "components/section-head.njk" %}
+    <div class="stack-40">
+      {%- for d in education.degrees %}
+      <div class="edu-card reveal">
+        <div>
+          <div class="edu-degree">{{ d.degree }}</div>
+          <div class="edu-school">{{ d.school }}</div>
+          <div class="edu-period">{{ d.start | year }} — {{ (d.end | year) if d.end else "Present" }}</div>
+        </div>
+        {%- if d.badge %}
+        <div class="edu-badge">
+          <div class="bv">{{ d.badge }}</div>
+          <div class="bl">{{ d.badge_label }}</div>
+        </div>
+        {%- endif %}
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+  </div>
+  {%- endif %}
+
+  {%- if education.certifications and education.certifications.length %}
+  <!-- CERTIFICATIONS -->
+  <div class="band-mid">
+  <div class="section">
+    {% set section = about.sections.certifications %}{% include "components/section-head.njk" %}
+    <div class="cert-grid narrow-680">
+      {%- for c in education.certifications %}
+      <{{ 'a href="' + c.url + '" target="_blank" rel="noopener noreferrer"' if c.url else 'div' }} class="cert-item reveal{% if loop.index <= 4 %} reveal-delay-{{ loop.index }}{% endif %}">
+        <div class="cert-icon" aria-hidden="true">{{ c.icon or "◆" }}</div>
+        <div>
+          <div class="cert-name">{{ c.name }}</div>
+          <div class="cert-org">{{ c.issuer }}</div>
+        </div>
+      </{{ 'a' if c.url else 'div' }}>
+      {%- endfor %}
+    </div>
+  </div>
+  </div>
+  {%- endif %}
+
+  {%- if education.awards and education.awards.length %}
+  <!-- AWARDS -->
+  <div class="band">
+  <div class="section">
+    {% set section = about.sections.awards %}{% include "components/section-head.njk" %}
+    <div class="award-list narrow-680">
+      {%- for a in education.awards %}
+      <div class="award-item reveal{% if loop.index <= 4 %} reveal-delay-{{ loop.index }}{% endif %}">
+        <div class="award-rank">{{ a.rank }}</div>
+        <div>
+          <div class="award-name">{{ a.title }}</div>
+          {% if a.detail %}<div class="award-sub">{{ a.detail }}</div>{% endif %}
+        </div>
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+  </div>
+  {%- endif %}

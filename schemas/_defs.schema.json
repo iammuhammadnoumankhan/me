@@ -1,0 +1,30 @@
+{
+  "$id": "_defs.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Shared definitions",
+  "definitions": {
+    "text": { "type": "string", "minLength": 1 },
+    "url": { "type": "string", "pattern": "^(https?://|mailto:)\\S+$" },
+    "yearMonth": { "type": "string", "pattern": "^\\d{4}-(0[1-9]|1[0-2])$", "description": "Quoted \"YYYY-MM\"" },
+    "yearOrYearMonth": { "type": "string", "pattern": "^\\d{4}(-(0[1-9]|1[0-2]))?$", "description": "Quoted \"YYYY\" or \"YYYY-MM\"" },
+    "tags": { "type": "array", "items": { "$ref": "#/definitions/text" } },
+    "autoValue": { "enum": ["years_experience", "roles", "projects"] },
+    "stat": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label"],
+      "properties": {
+        "value": { "$ref": "#/definitions/text" },
+        "auto": { "$ref": "#/definitions/autoValue" },
+        "label": { "$ref": "#/definitions/text" }
+      },
+      "oneOf": [{ "required": ["value"] }, { "required": ["auto"] }]
+    },
+    "section": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["eyebrow", "title"],
+      "properties": { "eyebrow": { "$ref": "#/definitions/text" }, "title": { "$ref": "#/definitions/text" } }
+    }
+  }
+}

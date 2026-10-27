@@ -1,0 +1,13 @@
+{
+  "$id": "site.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "site.yaml",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["url", "lang"],
+  "properties": {
+    "url": { "type": "string", "pattern": "^https?://\\S+[^/]$", "description": "Public site URL, no trailing slash" },
+    "lang": { "type": "string" },
+    "hosted_on": { "type": "string" }
+  }
+}

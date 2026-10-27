@@ -1,0 +1,46 @@
+.exp-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 64px;
+  align-items: start;
+}
+
+/* Sidebar summary cards */
+.exp-sidebar { display: flex; flex-direction: column; gap: 14px; }
+.sidebar-card {
+  background: var(--surface-high);
+  border: 1px solid var(--outline);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  transition: background var(--transition);
+}
+.sidebar-card:hover { background: var(--surface-highest); }
+.sc-label { font-family: var(--font-mono); font-size: 10px; color: var(--primary); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; }
+.sc-value { font-family: var(--font-display); font-size: 17px; font-weight: 700; color: var(--on-surface); line-height: 1.2; }
+.sc-sub { font-size: 12px; color: var(--on-surface-var); margin-top: 3px; line-height: 1.4; }
+
+/* Full-time vs internship indicator */
+.role-type-ft { border-left: 2px solid var(--primary); }
+.role-type-int { border-left: 2px solid var(--on-surface-dim); }
+
+@media (max-width: 960px) {
+  .exp-layout { grid-template-columns: 1fr; }
+  .exp-sidebar { order: -1; flex-direction: row; flex-wrap: wrap; }
+  .sidebar-card { flex: 1; min-width: 160px; }
+}
+
+@media (max-width: 640px) {
+  .exp-layout { gap: 32px; }
+  .exp-sidebar {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .sidebar-card {
+    min-width: 0;
+    padding: 16px;
+  }
+}
+
+/* Classes used by the templates (replace former inline styles) */
+.timeline-bullets strong { color: var(--on-surface); }
+.sidebar-cta { text-align: center; justify-content: center; margin-top: 8px; }

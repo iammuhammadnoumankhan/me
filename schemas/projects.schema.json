@@ -1,0 +1,56 @@
+{
+  "$id": "projects.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "projects.yaml",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["categories", "items"],
+  "properties": {
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "label"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "label": { "$ref": "_defs.schema.json#/definitions/text" }
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "category", "description", "tags"],
+        "properties": {
+          "name": { "$ref": "_defs.schema.json#/definitions/text" },
+          "featured": { "type": "boolean" },
+          "label": { "$ref": "_defs.schema.json#/definitions/text" },
+          "category": { "type": "string", "description": "Must match a categories[].id" },
+          "description": { "$ref": "_defs.schema.json#/definitions/text" },
+          "tags": { "$ref": "_defs.schema.json#/definitions/tags" },
+          "stats": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["value", "label"],
+              "properties": { "value": { "$ref": "_defs.schema.json#/definitions/text" }, "label": { "$ref": "_defs.schema.json#/definitions/text" } }
+            }
+          },
+          "links": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "github": { "$ref": "_defs.schema.json#/definitions/url" },
+              "demo": { "$ref": "_defs.schema.json#/definitions/url" },
+              "paper": { "$ref": "_defs.schema.json#/definitions/url" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

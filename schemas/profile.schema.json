@@ -1,0 +1,52 @@
+{
+  "$id": "profile.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "profile.yaml",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name", "first_name", "last_name", "logo", "initials", "headline", "tagline", "roles", "summary", "location", "email", "photo", "links", "stats"],
+  "properties": {
+    "name": { "$ref": "_defs.schema.json#/definitions/text" },
+    "first_name": { "$ref": "_defs.schema.json#/definitions/text" },
+    "last_name": { "$ref": "_defs.schema.json#/definitions/text" },
+    "logo": { "$ref": "_defs.schema.json#/definitions/text" },
+    "initials": { "$ref": "_defs.schema.json#/definitions/text" },
+    "headline": { "$ref": "_defs.schema.json#/definitions/text" },
+    "tagline": { "$ref": "_defs.schema.json#/definitions/text" },
+    "roles": { "type": "array", "minItems": 1, "items": { "$ref": "_defs.schema.json#/definitions/text" } },
+    "summary": { "$ref": "_defs.schema.json#/definitions/text" },
+    "location": { "$ref": "_defs.schema.json#/definitions/text" },
+    "work_preference": { "$ref": "_defs.schema.json#/definitions/text" },
+    "email": { "type": "string", "pattern": "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$" },
+    "photo": { "$ref": "_defs.schema.json#/definitions/text" },
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "label", "url", "handle"],
+        "properties": {
+          "id": { "enum": ["github", "linkedin", "fiverr", "upwork", "email"], "description": "Also selects the icon" },
+          "label": { "$ref": "_defs.schema.json#/definitions/text" },
+          "url": { "$ref": "_defs.schema.json#/definitions/url" },
+          "handle": { "$ref": "_defs.schema.json#/definitions/text" }
+        }
+      }
+    },
+    "stats": { "type": "array", "items": { "$ref": "_defs.schema.json#/definitions/stat" } },
+    "portrait_stats": { "type": "array", "maxItems": 2, "items": { "$ref": "_defs.schema.json#/definitions/stat" } },
+    "community": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "description"],
+        "properties": {
+          "title": { "$ref": "_defs.schema.json#/definitions/text" },
+          "description": { "$ref": "_defs.schema.json#/definitions/text" },
+          "tag": { "$ref": "_defs.schema.json#/definitions/text" }
+        }
+      }
+    }
+  }
+}

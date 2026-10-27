@@ -1,0 +1,122 @@
+/* Filter bar */
+.filter-bar {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+.filter-btn {
+  font-family: var(--font-mono);
+  font-size: 11px; letter-spacing: 0.06em;
+  color: var(--on-surface-var);
+  background: var(--surface-high);
+  border: 1px solid var(--outline);
+  padding: 7px 16px; border-radius: 20px;
+  cursor: pointer;
+  transition: color var(--transition), background var(--transition), border-color var(--transition);
+}
+.filter-btn:hover { color: var(--on-surface); border-color: rgba(255,255,255,0.18); }
+.filter-btn.active {
+  color: var(--primary);
+  background: var(--primary-glow-sm);
+  border-color: rgba(0,242,255,0.3);
+}
+
+/* Projects grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 20px;
+}
+.project-card {
+  background: var(--surface-high);
+  border: 1px solid var(--outline);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  display: flex; flex-direction: column; gap: 14px;
+  position: relative; overflow: hidden;
+  transition: background var(--transition), transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+.project-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0;
+  width: 56px; height: 56px;
+  background: radial-gradient(ellipse at top left, rgba(0,242,255,0.1), transparent);
+  pointer-events: none;
+}
+.project-card:hover {
+  background: var(--surface-highest);
+  transform: translateY(-4px);
+  border-color: rgba(0,242,255,0.15);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+}
+.project-card.hidden { display: none; }
+.pcard-num {
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--primary); letter-spacing: 0.1em; opacity: 0.7;
+}
+.pcard-name {
+  font-family: var(--font-display); font-size: 19px; font-weight: 700;
+  color: var(--on-surface); letter-spacing: -0.01em; line-height: 1.2;
+}
+.pcard-desc { font-size: 13.5px; color: var(--on-surface-var); line-height: 1.65; flex: 1; }
+.pcard-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.pcard-tag {
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--primary);
+  background: var(--primary-glow-sm);
+  border: 1px solid rgba(0,242,255,0.12);
+  padding: 3px 9px; border-radius: var(--radius-sm);
+  letter-spacing: 0.04em;
+}
+.pcard-category { display: none; }
+
+/* FYP highlight */
+.project-card.featured {
+  border-color: rgba(0,242,255,0.25);
+  background: var(--surface-highest);
+  grid-column: span 2;
+  flex-direction: row; gap: 32px;
+}
+.project-card.featured .pcard-main { flex: 1; display: flex; flex-direction: column; gap: 14px; }
+.project-card.featured .pcard-stat-col { display: flex; flex-direction: column; gap: 12px; justify-content: center; min-width: 180px; }
+.featured-stat {
+  background: var(--surface-mid);
+  border: 1px solid var(--outline);
+  border-left: 2px solid var(--primary);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+}
+.featured-stat .fs-val { font-family: var(--font-mono); font-size: 14px; font-weight: 500; color: var(--primary); }
+.featured-stat .fs-lbl { font-family: var(--font-mono); font-size: 10px; color: var(--on-surface-dim); letter-spacing: 0.06em; margin-top: 2px; }
+
+@media (max-width: 960px) {
+  .projects-grid { grid-template-columns: 1fr; }
+  .project-card.featured { flex-direction: column; grid-column: span 1; }
+  .project-card.featured .pcard-stat-col { flex-direction: row; flex-wrap: wrap; min-width: unset; }
+  .featured-stat { flex: 1; min-width: 120px; }
+}
+
+@media (max-width: 640px) {
+  .filter-bar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    margin: 0 -2px 36px;
+    scrollbar-width: thin;
+  }
+  .filter-btn { flex: 0 0 auto; }
+  .project-card { padding: 22px 18px; }
+  .project-card.featured { gap: 20px; }
+  .project-card.featured .pcard-stat-col {
+    flex-direction: column;
+    width: 100%;
+  }
+  .featured-stat { min-width: 0; }
+}
+
+/* Classes used by the templates (replace former inline styles) */
+.pcard-links { display: flex; gap: 16px; flex-wrap: wrap; }
+.pcard-links a {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em;
+  color: var(--primary); transition: opacity var(--transition);
+}
+.pcard-links a:hover { opacity: 0.75; }

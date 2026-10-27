@@ -1,0 +1,11 @@
+{%- import "components/icons.njk" as icons -%}
+<footer>
+  <div class="footer-left">© {% year %} {{ profile.name }}</div>
+  <div class="footer-right">
+    {%- for link in profile.links %}
+    <a href="{{ link.url }}"{{ icons.target(link.url) }}>{{ link.label }}</a>
+    {%- endfor %}
+    {% if site.hosted_on %}<span class="footer-sep" aria-hidden="true">·</span>
+    <span>Hosted on <span class="footer-host">{{ site.hosted_on }}</span></span>{% endif %}
+  </div>
+</footer>

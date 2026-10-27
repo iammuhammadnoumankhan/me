@@ -1,0 +1,17 @@
+{
+  "name": "mnk-portfolio",
+  "private": true,
+  "type": "module",
+  "description": "Muhammad Nouman Khan portfolio — content in src/_data/*.yaml, built with Eleventy",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy",
+    "validate": "node scripts/validate.js"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "3.1.7",
+    "ajv": "8.20.0",
+    "js-yaml": "5.5.0",
+    "markdown-it": "15.0.3"
+  }
+}

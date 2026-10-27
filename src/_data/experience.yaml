@@ -1,0 +1,70 @@
+# yaml-language-server: $schema=../../schemas/experience.schema.json
+# Work history, newest first. Shown on the Experience page timeline.
+#
+#   start / end : "YYYY-MM" (quoted). Leave `end` out for a current role.
+#   type        : full-time | part-time | contract | freelance | internship  (optional)
+#   remote      : true for remote roles (shows a "REMOTE · <location>" badge)
+#   highlights  : bullet points; inline markdown such as **bold** is supported.
+
+- role: MLOps Engineer
+  company: BetaCodes Pvt Ltd
+  type: full-time
+  location: Islamabad, Pakistan
+  start: "2025-08"
+  highlights:
+    - Provisioned and managed **NVIDIA DGX systems** and GPU nodes (H100, H200) for distributed AI model training and high-throughput inference workloads.
+    - Managed Kubernetes clusters using **Kubeadm, Terraform, and BCM (Base Command Manager)** for high-availability production environments.
+    - Built AI model serving infrastructure using **vLLM and Triton Inference Server**; applied quantization (INT4/INT8), tensor parallelism, and continuous batching to maximize GPU utilization.
+    - Implemented **model scaling strategies** including horizontal pod autoscaling and GPU-aware K8s scheduling to handle variable production loads.
+    - Designed end-to-end ML pipelines with CI/CD, Docker, and cloud-native workflows on AWS, GCP, and Azure — from model development to production.
+    - Deployed comprehensive monitoring, alerting, and observability stacks for production AI models ensuring SLA compliance.
+  tags: [NVIDIA DGX, H100/H200, Kubernetes, Kubeadm, Terraform, BCM, vLLM, Triton, Kserve, Docker, CI/CD, AWS, GCP]
+
+- role: AI Engineer
+  company: iQera Schools
+  location: USA
+  remote: true
+  start: "2024-08"
+  end: "2026-06"
+  highlights:
+    - Developed and deployed **Retrieval-Augmented Generation (RAG) systems** and agentic AI frameworks, enhancing the iQera Schools e-learning platform with generative AI capabilities.
+    - Built scalable backend services with **FastAPI and Django**, integrating vector databases for semantic search and comprehensive educational resource access.
+    - Managed cloud infrastructure on **AWS** including model hosting, API gateways, and vector database deployments.
+    - Led project management for AI feature delivery across cross-functional teams spanning the US and Pakistan.
+  tags: [RAG, Agentic AI, FastAPI, Django, AWS, Vector DBs, LangChain, LlamaIndex]
+
+- role: GenAI Intern
+  company: Sybrid Pvt Ltd
+  type: internship
+  location: Islamabad, Pakistan
+  start: "2024-07"
+  end: "2024-09"
+  highlights:
+    - Fine-tuned **Stable Diffusion models** (v1.5, 2.1, 3, and Flux1-dev) for generative AI tasks by building and captioning a localized demographic dataset.
+    - Enhanced model performance on clothing, facial imagery, architecture, and natural scenes using PyTorch and HuggingFace Transformers.
+    - Designed and ran systematic fine-tuning experiments with DreamBooth and LoRA techniques for targeted domain adaptation.
+  tags: [Stable Diffusion, Flux1-dev, LoRA, DreamBooth, PyTorch, HuggingFace, Generative AI]
+
+- role: ML / Computer Vision Intern
+  company: Rapidev
+  type: internship
+  location: Islamabad, Pakistan
+  start: "2023-08"
+  end: "2023-09"
+  highlights:
+    - Built a production-grade **car number plate detection model** using YOLO, deployed via RESTful APIs for real-time vehicle identification.
+    - Developed APIs for raster-to-vector conversion used in engineering document digitization workflows.
+    - Annotated and curated training datasets using CVAT and Roboflow ensuring high data quality for production deployments.
+  tags: [YOLO, OpenCV, CVAT, Roboflow, REST APIs, Python]
+
+- role: AI Intern
+  company: Sino-Pak Center for Artificial Intelligence (SPCAI)
+  type: internship
+  location: PAF IAST, Pakistan
+  start: "2022-07"
+  end: "2022-09"
+  highlights:
+    - Deployed machine learning models on **edge devices** using Raspberry Pi and OpenCV OAK-D for real-time inference in resource-constrained environments.
+    - Built a **facial attendance management system** with live face recognition and database integration for automated record keeping.
+    - Developed a **solar irradiance forecasting model** for smart building energy optimization using time-series ML techniques.
+  tags: [Edge AI, Raspberry Pi, OpenCV OAK-D, Face Recognition, Time-Series, Forecasting]

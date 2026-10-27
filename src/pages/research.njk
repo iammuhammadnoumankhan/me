@@ -1,0 +1,78 @@
+---
+layout: layouts/base.njk
+pageId: research
+pageCss: research
+permalink: /pages/research.html
+---
+{%- set res = pages.research -%}
+  {% include "components/page-hero.njk" %}
+
+  {%- if research.publications and research.publications.length %}
+  <!-- PUBLICATIONS -->
+  <div class="band-mid">
+  <div class="section">
+    {% set section = res.sections.publications %}{% include "components/section-head.njk" %}
+    {%- for pub in research.publications %}
+    <div class="pub-card reveal stack-40">
+      <div class="pub-venue-row">
+        <span class="pub-venue">{{ pub.publisher }} · {{ pub.venue }}</span>
+        {% if pub.peer_reviewed %}<span class="pub-badge">PEER-REVIEWED</span>{% endif %}
+        <span class="pub-badge">{{ pub.date | monthYearLong | upper }}</span>
+      </div>
+      <div class="pub-title">
+        {%- if pub.url %}<a href="{{ pub.url }}" target="_blank" rel="noopener noreferrer">{{ pub.title }}</a>{% else %}{{ pub.title }}{% endif -%}
+      </div>
+      <div class="pub-authors">
+        {%- for a in pub.authors -%}
+          {%- if not loop.first %}{{ ", and " if loop.last else ", " }}{% endif -%}
+          {%- if a.me %}<strong>{{ a.name }}</strong>{% else %}{{ a.name }}{% endif -%}
+        {%- endfor %} —
+        {{ pub.venue_full or pub.venue }}{% if pub.pages %}, pp. {{ pub.pages }}{% endif %}, {{ pub.publisher }}, {{ pub.date | citationDate }}.
+        {% if pub.collaboration %}In collaboration with the {{ pub.collaboration }}.{% endif %}
+      </div>
+      {%- if pub.abstract %}
+      <div class="pub-abstract">{{ pub.abstract | md | safe }}</div>
+      {%- endif %}
+      {%- if pub.url or pub.doi %}
+      <div class="pub-links">
+        {% if pub.url %}<a href="{{ pub.url }}" target="_blank" rel="noopener noreferrer" class="btn-secondary">READ_PAPER ↗</a>{% endif %}
+        {% if pub.doi %}<a href="https://doi.org/{{ pub.doi }}" target="_blank" rel="noopener noreferrer" class="btn-ghost">DOI: {{ pub.doi }}</a>{% endif %}
+      </div>
+      {%- endif %}
+      <div class="pub-meta-grid">
+        <div class="pub-meta-item"><div class="pmi-label">Venue</div><div class="pmi-value">{{ pub.venue }}</div></div>
+        <div class="pub-meta-item"><div class="pmi-label">Publisher</div><div class="pmi-value">{{ pub.publisher }}</div></div>
+        <div class="pub-meta-item"><div class="pmi-label">Date</div><div class="pmi-value">{{ pub.date | monthYearLong }}</div></div>
+        {%- if pub.pages %}
+        <div class="pub-meta-item"><div class="pmi-label">Pages</div><div class="pmi-value">{{ pub.pages }}</div></div>
+        {%- endif %}
+        {%- if pub.collaboration %}
+        <div class="pub-meta-item"><div class="pmi-label">Collaboration</div><div class="pmi-value">{{ pub.collaboration }}</div></div>
+        {%- endif %}
+        {%- if pub.topic %}
+        <div class="pub-meta-item"><div class="pmi-label">Topic</div><div class="pmi-value">{{ pub.topic }}</div></div>
+        {%- endif %}
+      </div>
+    </div>
+    {%- endfor %}
+  </div>
+  </div>
+  {%- endif %}
+
+  {%- if research.interests and research.interests.length %}
+  <!-- RESEARCH INTERESTS -->
+  <div class="band">
+  <div class="section">
+    {% set section = res.sections.interests %}{% include "components/section-head.njk" %}
+    <div class="research-areas">
+      {%- for r in research.interests %}
+      <div class="research-area reveal{% if loop.index <= 4 %} reveal-delay-{{ loop.index }}{% endif %}">
+        {% if r.icon %}<div class="ra-icon" aria-hidden="true">{{ r.icon }}</div>{% endif %}
+        <div class="ra-title">{{ r.title }}</div>
+        <div class="ra-desc">{{ r.description | md | safe }}</div>
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+  </div>
+  {%- endif %}

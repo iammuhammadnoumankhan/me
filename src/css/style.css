@@ -14,7 +14,7 @@
 
   --on-surface:       #e2e2e2;
   --on-surface-var:   #9a9a9a;
-  --on-surface-dim:   #555555;
+  --on-surface-dim:   #7a7a7a; /* 4.5:1 on --bg (was #555, 2.6:1) */
   --outline:          rgba(255,255,255,0.07);
   --outline-hover:    rgba(0,242,255,0.25);
 
@@ -267,7 +267,7 @@ nav.scrolled { background: rgba(10,10,10,0.92); }
   position: absolute; top: 0; left: 0;
   width: 60px; height: 60px;
   background: radial-gradient(ellipse at top left, rgba(0,242,255,0.1), transparent);
-  border-radius: inherit 0 0;
+  border-top-left-radius: inherit;
   pointer-events: none;
 }
 
@@ -333,14 +333,17 @@ footer {
   transition: color var(--transition);
 }
 .footer-right a:hover { color: var(--primary); }
+.footer-sep { color: var(--on-surface-dim); }
+.footer-host { color: var(--primary); }
 
 /* ─── SCROLL REVEAL ───────────────────────────────── */
-.reveal {
+/* Only hide content when JS is running to reveal it again (html.js is set in <head>) */
+:where(.js) .reveal {
   opacity: 0;
   transform: translateY(26px);
   transition: opacity 0.65s ease, transform 0.65s ease;
 }
-.reveal.visible {
+:where(.js) .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -348,6 +351,8 @@ footer {
 .reveal-delay-2 { transition-delay: 0.16s; }
 .reveal-delay-3 { transition-delay: 0.24s; }
 .reveal-delay-4 { transition-delay: 0.32s; }
+
+.stack-40 { margin-top: 40px; }
 
 /* ─── PAGE HERO STRIP ─────────────────────────────── */
 .page-hero {
@@ -574,4 +579,15 @@ footer {
     letter-spacing: 0.04em;
   }
   footer { padding: 20px 16px; }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+  }
 }

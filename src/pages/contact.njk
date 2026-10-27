@@ -1,0 +1,60 @@
+---
+layout: layouts/base.njk
+pageId: contact
+pageCss: contact
+permalink: /pages/contact.html
+---
+{%- import "components/icons.njk" as icons -%}
+{%- set contact = pages.contact -%}
+  {% include "components/page-hero.njk" %}
+
+  <div class="band-mid">
+  <div class="section">
+    <div class="contact-layout">
+      <!-- Left: Copy -->
+      <div>
+        <div class="contact-headline reveal">{{ contact.headline | accent | safe }}</div>
+        <p class="contact-intro reveal">{{ contact.intro | md | safe }}</p>
+        <div class="interest-row reveal">
+          {%- for i in contact.interests %}
+          <span class="interest-chip">{{ i }}</span>
+          {%- endfor %}
+        </div>
+        <a href="mailto:{{ profile.email }}" class="btn-primary reveal contact-cta">{{ contact.cta }}</a>
+
+        {%- if contact.availability and contact.availability.available %}
+        <!-- Availability -->
+        <div class="availability-card reveal">
+          <div class="avail-title"><span class="avail-dot"></span>CURRENTLY_AVAILABLE</div>
+          <div class="avail-interests">
+            {%- for item in contact.availability.items %}
+            <div class="avail-item">{{ item }}</div>
+            {%- endfor %}
+          </div>
+        </div>
+        {%- endif %}
+      </div>
+
+      <!-- Right: Links -->
+      <div class="contact-links reveal">
+        {%- for link in profile.links %}
+        <a href="{{ link.url }}"{{ icons.target(link.url) }} class="contact-link-item">
+          <div class="cli-icon">{{ icons.icon(link.id) | safe }}</div>
+          <div class="cli-text">
+            <div class="cli-label">{{ link.label | upper }}</div>
+            <div class="cli-value">{{ link.handle }}</div>
+          </div>
+          <div class="cli-arrow" aria-hidden="true">→</div>
+        </a>
+        {%- endfor %}
+        <div class="contact-link-item is-static">
+          <div class="cli-icon" aria-hidden="true">📍</div>
+          <div class="cli-text">
+            <div class="cli-label">LOCATION</div>
+            <div class="cli-value">{{ profile.location }}{% if profile.work_preference %} · {{ profile.work_preference }}{% endif %}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>

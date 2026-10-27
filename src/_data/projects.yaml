@@ -1,0 +1,115 @@
+# yaml-language-server: $schema=../../schemas/projects.schema.json
+# Projects page. `categories` drive the filter buttons; each project's `category` must match a category id.
+#
+# Project fields:
+#   name, description, category, tags  (required)
+#   featured : true to show as the wide card at the top (with `stats`)
+#   label    : overrides the auto "PROJECT_01" numbering
+#   links    : optional { github, demo, paper } URLs — shown as buttons on the card
+
+categories:
+  - id: mlops
+    label: MLOPS
+  - id: llm
+    label: LLM / RAG
+  - id: cv
+    label: COMPUTER VISION
+  - id: genai
+    label: GENERATIVE AI
+  - id: edge
+    label: EDGE AI
+
+items:
+  - name: AI Studio
+    featured: true
+    label: FYP — FINAL YEAR PROJECT
+    category: mlops
+    description: >-
+      Cloud-native AI deployment platform with end-to-end MLOps workflows. Includes a model registry,
+      experiment tracking, workflow automation, and one-click deployment to production. Built as the
+      Final Year Project at Pak-Austria Fachhochschule.
+    tags: [MLOps, Cloud-Native, Model Registry, Workflow Automation, Kubernetes]
+    stats:
+      - value: Cloud
+        label: DEPLOYMENT_TARGET
+      - value: K8s + CI/CD
+        label: INFRASTRUCTURE
+      - value: FYP
+        label: PROJECT_TYPE
+
+  - name: Attention-Based Glaucoma Detection
+    category: cv
+    description: >-
+      CNN with a custom attention mechanism for automated glaucoma detection from retinal scan imagery.
+      High-precision classification for early diagnosis support in medical imaging workflows.
+    tags: [CNN, Attention Mechanism, Medical AI, PyTorch]
+
+  - name: Tax & Finance Chatbot
+    category: llm
+    description: >-
+      Domain-specific RAG chatbot with a curated knowledge base using LangChain and OpenAI. Handles complex
+      tax and finance queries with context-aware responses and citation retrieval.
+    tags: [LangChain, RAG, OpenAI, Knowledge Base]
+
+  - name: DeepSeek Trading Analysis
+    category: llm
+    description: >-
+      Financial data extraction and AI-powered market analysis leveraging LLM insights for actionable trading
+      intelligence, pattern recognition, and automated market summary generation.
+    tags: [LLM, Finance, Data Extraction, DeepSeek]
+
+  - name: Fine-Tune Whisper on Quranic Data
+    category: llm
+    description: >-
+      Custom ASR fine-tuning pipeline for the Whisper model on a Quranic speech dataset. Full data
+      preprocessing, speech-to-text fine-tuning, and evaluation on domain-specific audio.
+    tags: [Whisper, ASR, Fine-Tuning, HuggingFace]
+
+  - name: Inventory Management (YOLOv8)
+    category: cv
+    description: >-
+      Real-time object detection for retail analytics using YOLOv8. Automates inventory tracking with live
+      camera feeds, bounding box detection, and backend database synchronization.
+    tags: [YOLOv8, Object Detection, Retail AI, Real-Time]
+
+  - name: Facial Attendance System
+    category: edge
+    description: >-
+      Real-time facial recognition system deployed on edge devices (Raspberry Pi) with full database
+      integration for automated attendance management and record keeping.
+    tags: [Edge AI, Face Recognition, Raspberry Pi, OpenCV]
+
+  - name: Solar Irradiance Forecasting
+    category: edge
+    description: >-
+      Time-series forecasting model for smart building energy optimization. Predicts solar irradiance to guide
+      HVAC and energy load management. Achieved 4th place at Uraan Exhibition 2023.
+    tags: [Forecasting, Time-Series, Smart Buildings, Award 🏅]
+
+  - name: AI Blog Generator
+    category: llm
+    description: >-
+      Automated content generation pipeline using NLP summarization and Django. Transforms source documents
+      into structured blog posts with consistent tone and automatic publishing workflows.
+    tags: [NLP, Summarization, Django, Automation]
+
+  - name: App Feedback Analyzer
+    category: llm
+    description: >-
+      End-to-end NLP pipeline for app store review analysis. Web scraping, sentiment classification, topic
+      modeling, and interactive data visualization dashboards for product teams.
+    tags: [Sentiment Analysis, NLP, Web Scraping, Visualization]
+
+  - name: Django AI Model Hub
+    category: genai
+    description: >-
+      1st Place — Uraan Projects Exhibition Fall 2023. A Django web platform hosting multiple deployed AI models
+      accessible via a unified UI, including image generation, classification, and text tasks.
+    tags: [Django, Multi-Model, Web App, 1st Place 🥇]
+
+  - name: Data Scrapers & Automation Suite
+    category: mlops
+    description: >-
+      Collection of production-grade web scrapers and automation tools. Includes Selenium-based browser
+      automation, BeautifulSoup parsers, and scheduled Crawl4AI pipelines for structured data extraction.
+    tags: [Selenium, BeautifulSoup, Crawl4AI, Automation]

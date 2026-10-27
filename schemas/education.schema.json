@@ -1,0 +1,52 @@
+{
+  "$id": "education.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "education.yaml",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "degrees": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["degree", "school", "start"],
+        "properties": {
+          "degree": { "$ref": "_defs.schema.json#/definitions/text" },
+          "school": { "$ref": "_defs.schema.json#/definitions/text" },
+          "start": { "$ref": "_defs.schema.json#/definitions/yearOrYearMonth" },
+          "end": { "$ref": "_defs.schema.json#/definitions/yearOrYearMonth" },
+          "badge": { "$ref": "_defs.schema.json#/definitions/text" },
+          "badge_label": { "$ref": "_defs.schema.json#/definitions/text" }
+        }
+      }
+    },
+    "certifications": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "issuer"],
+        "properties": {
+          "name": { "$ref": "_defs.schema.json#/definitions/text" },
+          "issuer": { "$ref": "_defs.schema.json#/definitions/text" },
+          "icon": { "$ref": "_defs.schema.json#/definitions/text" },
+          "url": { "$ref": "_defs.schema.json#/definitions/url" }
+        }
+      }
+    },
+    "awards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["rank", "title"],
+        "properties": {
+          "rank": { "$ref": "_defs.schema.json#/definitions/text" },
+          "title": { "$ref": "_defs.schema.json#/definitions/text" },
+          "detail": { "$ref": "_defs.schema.json#/definitions/text" }
+        }
+      }
+    }
+  }
+}

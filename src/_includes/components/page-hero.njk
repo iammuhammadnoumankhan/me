@@ -1,0 +1,8 @@
+{%- set hero = pages[pageId].hero -%}
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-eyebrow">{{ hero.eyebrow }}</div>
+    <h1 class="page-hero-title">{{ hero.title | accent | safe }}</h1>
+    {% if hero.subtitle %}<p class="page-hero-sub">{{ hero.subtitle }}</p>{% endif %}
+  </div>
+</div>

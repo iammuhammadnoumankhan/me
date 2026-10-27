@@ -2,3 +2,5 @@ design.md
 .codex
 .agents/
 .marscode/
+node_modules/
+_site/

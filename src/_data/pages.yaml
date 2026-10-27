@@ -1,0 +1,174 @@
+# yaml-language-server: $schema=../../schemas/pages.schema.json
+# Page-level copy: browser titles, nav labels, hero headings and page-specific widgets.
+# The order of pages here is the order of links in the nav.
+# In hero titles, wrap the highlighted (cyan) part in [[double brackets]]; use \n for a line break.
+
+home:
+  nav: Home
+  url: /
+  title: Muhammad Nouman Khan — AI Engineer & Researcher
+  description: AI Engineer & MLOps Specialist. Published IEEE researcher. Islamabad, Pakistan.
+  # "Explore" cards under the hero
+  explore:
+    - page: about
+      code: ABOUT_01
+      title: About Me
+      text: Background, education & the story behind the work
+    - page: experience
+      code: EXP_02
+      title: Experience
+      text: Full career timeline with BetaCodes, iQera & more
+    - page: skills
+      code: SKILLS_03
+      title: Technical Skills
+      text: GPU clusters, K8s, inference, LLMs & full stack
+    - page: projects
+      code: PROJ_04
+      title: Projects
+      text: AI Studio, Glaucoma Detection & 10+ more builds
+    - page: research
+      code: RES_05
+      title: Research
+      text: IEEE publication on Graph-based RAG — ICOSST 2024
+    - page: contact
+      code: CONTACT_06
+      title: Contact
+      text: Open to roles, research collab & consulting
+
+about:
+  nav: About
+  url: /pages/about.html
+  title: About — Muhammad Nouman Khan
+  description: Background, education, certifications and achievements of AI engineer Muhammad Nouman Khan.
+  hero:
+    eyebrow: ABOUT
+    title: The Architect\nBehind the [[Models]]
+    subtitle: AI engineer, researcher, and builder — translating cutting-edge ML research into systems that work in production.
+  bio:
+    - >-
+      I'm **Muhammad Nouman Khan** — an AI Engineer and MLOps Specialist with a deep passion
+      for deploying machine learning at scale. My work spans the full AI stack: from fine-tuning
+      foundation models and designing multi-agent architectures, to provisioning
+      **NVIDIA DGX clusters**, managing Kubernetes environments, and optimizing inference
+      pipelines for real-world production loads.
+    - >-
+      I hold a **Bachelor of Science in Artificial Intelligence** from
+      Pak-Austria Fachhochschule Institute of Applied Sciences and Technology (2021–2025),
+      and I'm an **IEEE-published researcher** with collaborative work from the University of Hull, UK,
+      focused on Graph-based Retrieval-Augmented Generation.
+    - >-
+      Whether it's managing Kubernetes clusters via **Terraform, Kubeadm, and BCM**,
+      fine-tuning Stable Diffusion models on custom datasets, or architecting RAG systems for
+      US-based e-learning platforms — I bridge the gap between AI research and production reality.
+    - >-
+      I believe great AI engineering isn't just about writing code — it's about building systems
+      that are **reliable, scalable, and observable** long after the model is deployed.
+  highlights:
+    - label: CURRENT_ROLE
+      value: MLOps Engineer
+      sub: BetaCodes Pvt Ltd — Islamabad
+    - label: RESEARCH
+      value: IEEE Published
+      sub: Graph-based RAG — ICOSST 2024
+    - label: EDUCATION
+      value: BS in AI — 2025
+      sub: Pak-Austria Fachhochschule
+    - label: GPU INFRA
+      value: NVIDIA DGX
+      sub: A100 / H100 cluster management # TODO(confirm): experience.yaml says H100/H200
+    - label: CERTIFICATIONS
+      value: CKAD Certified
+      sub: Kubernetes Application Developer
+  sections:
+    education: { eyebrow: EDUCATION, title: Academic Background }
+    certifications: { eyebrow: CERTIFICATIONS, title: Professional Credentials }
+    awards: { eyebrow: ACHIEVEMENTS, title: Project Exhibitions }
+
+experience:
+  nav: Experience
+  url: /pages/experience.html
+  title: Experience — Muhammad Nouman Khan
+  description: Career timeline of Muhammad Nouman Khan — MLOps, AI engineering, generative AI and computer vision roles.
+  hero:
+    eyebrow: EXPERIENCE
+    title: Career [[Timeline]]
+    subtitle: A proven track record of translating AI research into production-grade systems across education, infrastructure, and enterprise domains.
+  # Cards beside the timeline. `value: auto:years_experience` is computed from experience.yaml.
+  sidebar:
+    - label: TOTAL_EXPERIENCE
+      auto: years_experience
+      suffix: " Years"
+      sub: AI, MLOps & Computer Vision
+      accent: true
+    - label: CURRENT_COMPANY
+      value: BetaCodes
+      sub: MLOps Engineer · Islamabad
+      accent: true
+    - label: GPU_EXPERTISE
+      value: NVIDIA DGX
+      sub: A100 · H100 · Distributed training # TODO(confirm): experience.yaml says H100/H200
+    - label: K8S_MANAGEMENT
+      value: Kubeadm + BCM
+      sub: Terraform · Bare-metal clusters
+    - label: INFERENCE
+      value: vLLM + Triton
+      sub: FP8/INT8 · Tensor parallelism # TODO(confirm): experience.yaml says INT4/INT8
+  cta: OPEN TO WORK →
+
+skills:
+  nav: Skills
+  url: /pages/skills.html
+  title: Skills — Muhammad Nouman Khan
+  description: Technical skills of Muhammad Nouman Khan — GPU infrastructure, LLM inference, Kubernetes, MLOps, AI frameworks and cloud.
+  hero:
+    eyebrow: SKILLS
+    title: Technical [[Arsenal]]
+    subtitle: From GPU cluster provisioning to LLM inference optimization — the full stack of modern AI engineering.
+
+projects:
+  nav: Projects
+  url: /pages/projects.html
+  title: Projects — Muhammad Nouman Khan
+  description: Selected AI projects by Muhammad Nouman Khan across MLOps, LLMs, computer vision, generative AI and edge AI.
+  hero:
+    eyebrow: PROJECTS
+    title: Selected [[Work]]
+    subtitle: AI systems, ML models, and engineering tools built across LLMs, computer vision, and edge computing.
+
+research:
+  nav: Research
+  url: /pages/research.html
+  title: Research — Muhammad Nouman Khan
+  description: IEEE-published research by Muhammad Nouman Khan on graph-based retrieval-augmented generation.
+  hero:
+    eyebrow: RESEARCH
+    title: IEEE [[Publication]]
+    subtitle: Peer-reviewed research at the intersection of knowledge graphs, retrieval augmentation, and large language models.
+  sections:
+    publications: { eyebrow: ICOSST_2024, title: Published Paper }
+    interests: { eyebrow: RESEARCH_INTERESTS, title: Areas of Focus }
+
+contact:
+  nav: Contact
+  nav_cta: true # shown as the outlined button on the right of the nav
+  url: /pages/contact.html
+  title: Contact — Muhammad Nouman Khan
+  description: Get in touch with Muhammad Nouman Khan for AI/MLOps roles, research collaboration and freelance projects.
+  hero:
+    eyebrow: CONTACT
+    title: Let's Build [[Together]]
+    subtitle: Open to full-time roles, research collaborations, and freelance AI/MLOps projects.
+  headline: Got a\n[[project]] in\nmind?
+  intro: >-
+    I'm especially interested in opportunities at the intersection of
+    **LLM infrastructure, GPU computing, and production ML systems**.
+    Whether you're building the next AI product or need an expert to scale your existing infrastructure — let's talk.
+  interests: [FULL-TIME ROLES, MLOps CONSULTING, AI RESEARCH COLLAB, FREELANCE PROJECTS, SPEAKING / MENTORING]
+  cta: SEND A MESSAGE →
+  availability:
+    available: true
+    items:
+      - Full-time AI Engineer / MLOps roles
+      - Remote opportunities worldwide
+      - Research collaboration & co-authoring
+      - Short-term consulting & freelance AI projects

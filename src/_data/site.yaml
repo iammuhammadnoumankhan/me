@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=../../schemas/site.schema.json
+# Site-wide settings.
+
+# Public URL of the site (no trailing slash). Used for canonical links and social previews.
+url: https://iammuhammadnoumankhan.github.io/me
+lang: en
+hosted_on: GitHub Pages

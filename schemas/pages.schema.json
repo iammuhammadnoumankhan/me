@@ -1,0 +1,79 @@
+{
+  "$id": "pages.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "pages.yaml",
+  "description": "Page copy keyed by page id. Key order = nav order.",
+  "type": "object",
+  "required": ["home", "about", "experience", "skills", "projects", "research", "contact"],
+  "additionalProperties": { "$ref": "#/definitions/page" },
+  "definitions": {
+    "t": { "$ref": "_defs.schema.json#/definitions/text" },
+    "card": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "sub"],
+      "properties": {
+        "label": { "$ref": "#/definitions/t" },
+        "value": { "$ref": "#/definitions/t" },
+        "auto": { "$ref": "_defs.schema.json#/definitions/autoValue" },
+        "suffix": { "type": "string" },
+        "sub": { "$ref": "#/definitions/t" },
+        "accent": { "type": "boolean" }
+      },
+      "oneOf": [{ "required": ["value"] }, { "required": ["auto"] }]
+    },
+    "page": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["nav", "url", "title", "description"],
+      "properties": {
+        "nav": { "$ref": "#/definitions/t" },
+        "nav_cta": { "type": "boolean" },
+        "url": { "type": "string", "pattern": "^/" },
+        "title": { "$ref": "#/definitions/t" },
+        "description": { "$ref": "#/definitions/t" },
+        "hero": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["eyebrow", "title"],
+          "properties": {
+            "eyebrow": { "$ref": "#/definitions/t" },
+            "title": { "$ref": "#/definitions/t" },
+            "subtitle": { "$ref": "#/definitions/t" }
+          }
+        },
+        "sections": { "type": "object", "additionalProperties": { "$ref": "_defs.schema.json#/definitions/section" } },
+        "explore": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["page", "code", "title", "text"],
+            "properties": {
+              "page": { "type": "string", "description": "A page id from this file" },
+              "code": { "$ref": "#/definitions/t" },
+              "title": { "$ref": "#/definitions/t" },
+              "text": { "$ref": "#/definitions/t" }
+            }
+          }
+        },
+        "bio": { "type": "array", "items": { "$ref": "#/definitions/t" } },
+        "highlights": { "type": "array", "items": { "$ref": "#/definitions/card" } },
+        "sidebar": { "type": "array", "items": { "$ref": "#/definitions/card" } },
+        "cta": { "$ref": "#/definitions/t" },
+        "headline": { "$ref": "#/definitions/t" },
+        "intro": { "$ref": "#/definitions/t" },
+        "interests": { "type": "array", "items": { "$ref": "#/definitions/t" } },
+        "availability": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["available", "items"],
+          "properties": {
+            "available": { "type": "boolean" },
+            "items": { "type": "array", "items": { "$ref": "#/definitions/t" } }
+          }
+        }
+      }
+    }
+  }
+}

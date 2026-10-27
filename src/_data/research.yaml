@@ -1,0 +1,48 @@
+# yaml-language-server: $schema=../../schemas/research.schema.json
+# Research page.
+#   publications[].authors : list in citation order; set `me: true` on your own entry to bold it.
+#   publications[].url / doi : optional — adds "Read paper" / DOI links to the card.
+
+publications:
+  - title: To Enhance Graph-Based Retrieval-Augmented Generation (RAG) with Robust Retrieval Techniques
+    authors:
+      - name: M. Rani
+      - name: B. K. Mishra
+      - name: D. Thakker
+      - name: M. N. Khan
+        me: true
+    venue: ICOSST 2024
+    venue_full: 18th International Conference on Open-Source Systems and Technologies (ICOSST)
+    publisher: IEEE
+    date: "2024-12"
+    pages: 1–6
+    peer_reviewed: true
+    collaboration: University of Hull, UK
+    topic: Graph-based RAG
+    # url: https://ieeexplore.ieee.org/document/...   # TODO(confirm): add the IEEE Xplore link
+    # doi: 10.1109/...
+    abstract: >-
+      This paper proposes enhancements to graph-based RAG pipelines by introducing robust retrieval strategies
+      that improve the relevance and accuracy of retrieved context in large language model applications. The
+      work addresses key limitations of vanilla vector-similarity retrieval by leveraging graph traversal and
+      hybrid indexing techniques to improve answer grounding in domain-specific knowledge bases.
+
+interests:
+  - icon: 🔗
+    title: Graph-based RAG
+    description: Knowledge graph construction and traversal for improved context retrieval in LLM pipelines. Hybrid graph + vector indexing strategies.
+  - icon: ⚡
+    title: LLM Inference Optimization
+    description: Quantization, speculative decoding, tensor parallelism and kernel fusion for low-latency LLM serving at scale on GPU hardware.
+  - icon: 🤖
+    title: Multi-Agent AI Systems
+    description: Designing orchestration frameworks for collaborative AI agents in complex task environments. Tool use, planning, and memory architectures.
+  - icon: 👁
+    title: Computer Vision & Medical AI
+    description: Attention-based architectures for medical imaging, edge-deployed vision models, and real-time object detection in resource-constrained environments.
+  - icon: 🏗
+    title: MLOps at Scale
+    description: Reproducible, observable, and reliable ML systems in production — spanning GPU cluster management, CI/CD for ML, and model lifecycle governance.
+  - icon: 🌱
+    title: Generative Models
+    description: Fine-tuning and evaluation of diffusion models and large language models for domain-specific generation tasks including code, speech, and images.

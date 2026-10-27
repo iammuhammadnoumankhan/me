@@ -1,0 +1,8 @@
+{#- Expects `p` = a project entry -#}
+{%- if p.links %}
+<div class="pcard-links">
+  {%- if p.links.github %}<a href="{{ p.links.github }}" target="_blank" rel="noopener noreferrer">GITHUB ↗</a>{% endif %}
+  {%- if p.links.demo %}<a href="{{ p.links.demo }}" target="_blank" rel="noopener noreferrer">LIVE_DEMO ↗</a>{% endif %}
+  {%- if p.links.paper %}<a href="{{ p.links.paper }}" target="_blank" rel="noopener noreferrer">PAPER ↗</a>{% endif %}
+</div>
+{%- endif %}

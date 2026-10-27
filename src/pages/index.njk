@@ -1,0 +1,76 @@
+---
+layout: layouts/base.njk
+pageId: home
+pageCss: home
+permalink: /index.html
+---
+{%- import "components/icons.njk" as icons -%}
+{%- set home = pages.home -%}
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-glow-right"></div>
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow">{{ profile.roles | join(" · ") }}</div>
+        <h1 class="hero-name">{{ profile.first_name }}<br><span>{{ profile.last_name }}</span></h1>
+        <div class="hero-role">{{ profile.tagline }}</div>
+        <p class="hero-desc">{{ profile.summary | md | safe }}</p>
+        <div class="hero-actions">
+          <a href="{{ pages.experience.url | rel(page.url) }}" class="btn-primary">VIEW_EXPERIENCE →</a>
+          <a href="{{ pages.projects.url | rel(page.url) }}" class="btn-secondary">PROJECTS</a>
+          <a href="{{ pages.contact.url | rel(page.url) }}" class="btn-ghost">CONTACT</a>
+        </div>
+        <div class="hero-socials">
+          {%- for link in profile.links %}
+          <a href="{{ link.url }}"{{ icons.target(link.url) }} class="social-chip">
+            {{ icons.icon(link.id) | safe }}
+            {{ link.label | upper }}
+          </a>
+          {%- endfor %}
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-row reveal reveal-delay-1">
+          {%- for s in profile.stats %}
+          <div class="stat-cell"><div class="stat-val">{{ s | statValue(auto) }}</div><div class="stat-lbl">{{ s.label }}</div></div>
+          {%- endfor %}
+        </div>
+      </div>
+
+      <!-- Portrait -->
+      <div class="portrait-wrap">
+        <div class="portrait-card">
+          <img src="{{ ('/' + profile.photo) | rel(page.url) }}" alt="{{ profile.name }}" width="300" height="360" fetchpriority="high"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="portrait-placeholder" style="display:none">
+            <div class="initials">{{ profile.initials }}</div>
+            <div class="p-hint">Add {{ profile.photo }}<br>to src folder</div>
+          </div>
+        </div>
+        {%- for s in profile.portrait_stats %}
+        <div class="portrait-stat {{ 'stat-tl' if loop.first else 'stat-br' }}">
+          <div class="sv">{{ s | statValue(auto) }}</div>
+          <div class="sl">{{ s.label }}</div>
+        </div>
+        {%- endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK NAV -->
+  <div class="band">
+  <div class="section section-sm">
+    <div class="section-eyebrow reveal">EXPLORE</div>
+    <div class="quick-cards">
+      {%- for card in home.explore %}
+      <a href="{{ pages[card.page].url | rel(page.url) }}" class="quick-card reveal reveal-delay-{{ (loop.index0 % 4) + 1 }}">
+        <div class="qc-icon">{{ card.code }}</div>
+        <div class="qc-title">{{ card.title }}</div>
+        <div class="qc-sub">{{ card.text }}</div>
+        <div class="qc-arrow" aria-hidden="true">→</div>
+      </a>
+      {%- endfor %}
+    </div>
+  </div>
+  </div>

@@ -1,0 +1,55 @@
+---
+layout: layouts/base.njk
+pageId: projects
+pageCss: projects
+pageScripts: [projects]
+permalink: /pages/projects.html
+---
+  {% include "components/page-hero.njk" %}
+
+  <div class="band-mid">
+  <div class="section">
+    <!-- Filter -->
+    <div class="filter-bar reveal" role="group" aria-label="Filter projects">
+      <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">ALL</button>
+      {%- for c in projects.categories %}
+      <button type="button" class="filter-btn" data-filter="{{ c.id }}" aria-pressed="false">{{ c.label }}</button>
+      {%- endfor %}
+    </div>
+
+    <div class="projects-grid" id="projects-grid">
+      {%- for p in projects.items | selectattr("featured") %}
+      <div class="project-card featured reveal" data-cat="{{ p.category }}">
+        <div class="pcard-main">
+          <div class="pcard-num">{{ p.label or "FEATURED" }}</div>
+          <div class="pcard-name">{{ p.name }}</div>
+          <div class="pcard-desc">{{ p.description | md | safe }}</div>
+          <div class="pcard-tags">
+            {%- for t in p.tags %}<span class="pcard-tag">{{ t }}</span>{% endfor %}
+          </div>
+          {% include "components/project-links.njk" %}
+        </div>
+        {%- if p.stats %}
+        <div class="pcard-stat-col">
+          {%- for s in p.stats %}
+          <div class="featured-stat"><div class="fs-val">{{ s.value }}</div><div class="fs-lbl">{{ s.label }}</div></div>
+          {%- endfor %}
+        </div>
+        {%- endif %}
+      </div>
+      {%- endfor %}
+
+      {%- for p in projects.items | rejectattr("featured") %}
+      <div class="project-card reveal" data-cat="{{ p.category }}">
+        <div class="pcard-num">{{ p.label or ("PROJECT_" + (loop.index | pad2)) }}</div>
+        <div class="pcard-name">{{ p.name }}</div>
+        <div class="pcard-desc">{{ p.description | md | safe }}</div>
+        <div class="pcard-tags">
+          {%- for t in p.tags %}<span class="pcard-tag">{{ t }}</span>{% endfor %}
+        </div>
+        {% include "components/project-links.njk" %}
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+  </div>

@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=../../schemas/education.schema.json
+# About page: degrees, certifications and awards.
+#   start / end, date : "YYYY" or "YYYY-MM" (quoted).
+
+degrees:
+  - degree: Bachelor of Science in Artificial Intelligence
+    school: Pak-Austria Fachhochschule Institute of Applied Sciences and Technology
+    start: "2021"
+    end: "2025"
+    badge: AI
+    badge_label: Degree
+
+certifications:
+  - name: Certified Kubernetes Application Developer (CKAD)
+    issuer: CNCF
+    icon: ☸
+  - name: Machine Learning Specialization
+    issuer: Coursera · DeepLearning.AI
+    icon: ⚙
+  - name: Generative AI with Large Language Models
+    issuer: Coursera · DeepLearning.AI
+    icon: ◆
+
+awards:
+  - rank: 1st
+    title: Uraan Projects Exhibition — Fall 2023
+    detail: Website with Different AI Models Deployed · Django Framework · PAF IAST · Jul 2023
+  - rank: 4th
+    title: Uraan Projects Exhibition — Spring 2023
+    detail: Solar Irradiance Forecasting · PAF IAST · Feb 2023

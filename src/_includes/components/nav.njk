@@ -1,0 +1,19 @@
+<nav>
+  <a href="{{ '/' | rel(page.url) }}" class="nav-logo">{{ profile.logo }}</a>
+  <ul class="nav-links">
+    {%- for id, p in pages %}{% if not p.nav_cta %}
+    <li><a href="{{ p.url | rel(page.url) }}"{% if id == pageId %} class="active" aria-current="page"{% endif %}>{{ p.nav }}</a></li>
+    {%- endif %}{% endfor %}
+  </ul>
+  {%- for id, p in pages %}{% if p.nav_cta %}
+  <a href="{{ p.url | rel(page.url) }}" class="nav-cta">{{ p.nav | upper }}</a>
+  {%- endif %}{% endfor %}
+  <button class="nav-hamburger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-drawer">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-drawer" id="nav-drawer">
+  {%- for id, p in pages %}
+  <a href="{{ p.url | rel(page.url) }}"{% if p.nav_cta or id == pageId %} class="{% if p.nav_cta %}nav-cta{% endif %}{% if id == pageId %} active{% endif %}"{% endif %}{% if id == pageId %} aria-current="page"{% endif %}>{{ p.nav }}</a>
+  {%- endfor %}
+</div>
