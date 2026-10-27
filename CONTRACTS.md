@@ -18,7 +18,7 @@ Conventions shared by every file:
 | `profile.yaml` | object | `name`, `first_name`, `last_name`, `logo`, `headline`, `tagline`, `roles[]`, `summary`, `location`, `email`, `photo`, `links[]`, `stats[]` | `links[].id` ∈ `github, linkedin, fiverr, upwork, email` (also picks the icon); `portrait_stats` ≤ 2 items; `community[]` optional |
 | `experience.yaml` | array, newest first | `role`, `company`, `location`, `start`, `highlights[]` (≥1) | `type` ∈ `full-time, part-time, contract, freelance, internship`; `remote: true` renders "Remote (location)"; `tags[]` optional |
 | `projects.yaml` | object | `categories[]` (`id`, `label`), `items[]` (`name`, `category`, `date`, `priority` 1–100, `description`, `tags[]`) | sorted by `priority` (desc), then `date` (newest); featured items always lead; `ongoing: true` shows "— PRESENT"; `date_estimated: true` marks tentative dates (not displayed); `featured: true` makes it the wide card (with `stats[]`); `label` overrides `PROJECT_NN`; `links` ⊂ `{github, demo, paper}`, **public repos only** |
-| `skills.yaml` | object | `groups[]` (`title`, `skills[]`) | a skill is a string or `{name, core: true}`; `proficiency[]` levels are integers 0–100 |
+| `skills.yaml` | object | `groups[]` (`title`, `skills[]`) | a skill is a string or `{name, core: true}`; `core` skills also feed `knowsAbout` in the home page JSON-LD. No proficiency percentages (removed by the owner) |
 | `research.yaml` | object | per publication: `title`, `authors[]`, `venue`, `publisher`, `date` | `authors[].me: true` bolds the owner; `url` and `doi` are optional (adds READ_PAPER / DOI buttons) |
 | `education.yaml` | object | per degree: `degree`, `school`, `start` | `certifications[]` (`name`, `issuer`, optional `icon`, `url`), `awards[]` (`rank`, `title`, optional `detail`) |
 | `pages.yaml` | object keyed by page id | ids `home, about, experience, skills, projects, research, contact`; each needs `nav`, `url` (starts with `/`), `title`, `description` | key order = nav order; `nav_cta: true` = outlined nav button; hero titles use `[[accent]]` and `\n` |
@@ -41,9 +41,10 @@ Conventions shared by every file:
 ## 2. Template contracts
 
 - Every page template sets `layout: layouts/base.njk`, a `pageId` that matches a `pages.yaml` key, an optional `pageCss` (loads `css/pages/<pageCss>.css`), optional `pageScripts` (loads `js/<name>.js`), and an explicit `permalink`.
-- **Public URLs are stable:** `/index.html`, `/pages/{about,experience,skills,projects,research,contact}.html`, `/cv.html`, `/sitemap.xml`, `/<cv.filename>`. Changing one breaks inbound links; avoid it.
+- **Public URLs are stable:** `/index.html`, `/pages/{about,experience,skills,projects,research,contact}.html`, `/cv.html`, `/sitemap.xml`, `/<cv.filename>`, `/og-card.png`. Changing one breaks inbound links; avoid it.
 - Internal links and asset paths go through `rel(page.url)` and must resolve under any base path.
-- `base.njk` provides, on every page: `<title>`, meta description, canonical URL, Open Graph tags, favicons, font preloads, server-rendered nav and footer, a single `<main class="page-wrapper">`, and `html.js` set before first paint.
+- `base.njk` provides, on every page: `<title>`, meta description, canonical URL, Open Graph / Twitter tags (image = `og-card.png`, 1200×630), favicons, font preloads, server-rendered nav and footer, a single `<main class="page-wrapper">`, and `html.js` set before first paint. The home page also gets a schema.org `Person` JSON-LD block built from profile, experience, education and skills.
+- `og-card.njk` is the social preview: standalone, `noindex`, excluded from collections; it must fit 1200×630 with nothing clipped.
 - `.reveal` content is hidden only under `:where(.js)`. Without JavaScript everything is visible.
 - `cv.njk` is standalone: it doesn't use the base layout, is `noindex`, and is excluded from collections and the sitemap.
 
@@ -53,7 +54,7 @@ Conventions shared by every file:
 1. Validate all data (abort with every error listed if any check fails).
 2. Render all pages into `_site/` and copy `css/`, `js/`, `fonts/` and `assets/*` (icons at the site root).
 3. Generate `img/<photo>-{300,600}.{webp,jpeg}` from `profile.photo`; a missing photo fails the build.
-4. Print `_site/cv.html` to `_site/<cv.filename>` (production builds only; needs Chrome or `CHROME_PATH`).
+4. Production builds only (needs Chrome or `CHROME_PATH`): print `_site/cv.html` to `_site/<cv.filename>`, then screenshot `_site/og-card.html` to `_site/og-card.png`.
 
 CI (`deploy.yml`) runs exactly `npm ci && npm run build` and deploys `_site/` only from `main`.
 

@@ -13,7 +13,7 @@ Edit the file for what you want to change, then push:
 | `src/_data/profile.yaml` | Name, tagline, summary, links, home stats, community work | Home, nav, footer, About, Contact |
 | `src/_data/experience.yaml` | Jobs and internships (newest first) | Experience |
 | `src/_data/projects.yaml` | Project categories and cards | Projects |
-| `src/_data/skills.yaml` | Skill groups and proficiency bars | Skills |
+| `src/_data/skills.yaml` | Skill groups (`core` skills are highlighted) | Skills, CV, search-engine data |
 | `src/_data/research.yaml` | Publications and research interests | Research |
 | `src/_data/education.yaml` | Degrees, certifications and awards | About |
 | `src/_data/pages.yaml` | Page titles, SEO descriptions, hero text, nav order, page-specific cards | Every page |
@@ -77,7 +77,7 @@ Requires Node 22+ and Google Chrome (used to print the CV; set `CHROME_PATH` if 
 npm install
 npm start          # dev server with live reload at http://localhost:8080 (no PDF)
 npm run validate   # check the YAML files only
-npm run build      # produce the static site and the CV PDF in _site/
+npm run build      # produce the static site, the CV PDF and the social card in _site/
 npm run cv         # same as build; handy after editing the CV template
 ```
 
@@ -89,7 +89,7 @@ src/
   _includes/
     layouts/base.njk  ← <head>, nav, footer shared by every page
     components/       ← nav, footer, page hero, section heading, icons, project links
-  pages/              ← one template per page, plus cv.njk (the CV) and sitemap.njk
+  pages/              ← one template per page, plus cv.njk (the CV), og-card.njk (social preview) and sitemap.njk
   css/style.css       ← design tokens and shared styles
   css/pages/          ← page-specific styles
   js/                 ← nav/scroll behaviour, project filter, skill bars
@@ -99,6 +99,7 @@ src/
 schemas/              ← JSON Schemas for each data file
 scripts/validate.js   ← schema and cross-reference checks, run before every build
 scripts/cv-pdf.js     ← prints cv.html to PDF after every production build
+scripts/social-card.js ← screenshots og-card.html to og-card.png (link previews on LinkedIn, WhatsApp, X…)
 eleventy.config.js    ← build config and template filters
 .github/workflows/deploy.yml
 ```

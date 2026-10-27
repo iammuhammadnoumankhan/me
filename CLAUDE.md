@@ -9,7 +9,7 @@ Personal portfolio + CV of **Muhammad Nouman Khan** (AI / MLOps engineer). Stati
 
 - **Content** lives only in `src/_data/*.yaml`. Templates in `src/pages/*.njk` and `src/_includes/` render it. Never put content in templates.
 - **Validation:** `scripts/validate.js` checks every data file against `schemas/<name>.schema.json` plus cross-file references. It runs before every build (`eleventy.before` hook), so a bad edit fails the build and never deploys.
-- **CV:** `src/pages/cv.njk` renders `cv.html` from the same data; `scripts/cv-pdf.js` prints it to the PDF named in `cv.yaml` after production builds (`runMode === "build"`) using headless Chrome (puppeteer-core, system Chrome).
+- **CV and social card:** `src/pages/cv.njk` renders `cv.html` from the same data; after production builds (`runMode === "build"`) `scripts/cv-pdf.js` prints it to the PDF named in `cv.yaml`, and `scripts/social-card.js` screenshots `og-card.njk` to `og-card.png`, both with headless Chrome (puppeteer-core, system Chrome).
 - **Deploy:** push to `main` → `.github/workflows/deploy.yml` → `npm ci && npm run build` → GitHub Pages (source: GitHub Actions). PRs build and validate but don't deploy.
 
 ## Commands

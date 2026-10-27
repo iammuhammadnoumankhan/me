@@ -5,6 +5,7 @@ import MarkdownIt from "markdown-it";
 import Image from "@11ty/eleventy-img";
 import { validate } from "./scripts/validate.js";
 import { buildCvPdf } from "./scripts/cv-pdf.js";
+import { buildSocialCard } from "./scripts/social-card.js";
 
 const md = new MarkdownIt({ html: false, linkify: false, typographer: false });
 const MONTHS = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
@@ -49,9 +50,11 @@ export default function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy({ "src/css": "css", "src/js": "js", "src/fonts": "fonts", "src/assets": "." });
 
-  // The CV PDF is printed from the built cv.html on production builds (`npm run cv` for dev)
+  // Production builds print the CV PDF and screenshot the social card (skipped by `npm start`)
   eleventyConfig.on("eleventy.after", async ({ runMode }) => {
-    if (runMode === "build") await buildCvPdf();
+    if (runMode !== "build") return;
+    await buildCvPdf();
+    await buildSocialCard();
   });
 
   /* Responsive, optimised photo: WebP + JPEG at 1x/2x, with stable file names */
@@ -67,6 +70,7 @@ export default function (eleventyConfig) {
   });
   /* Absolute URL of the 600px JPEG, for social previews */
   eleventyConfig.addFilter("photoUrl", (src, siteUrl) => `${siteUrl}/img/${path.parse(src).name}-600.jpeg`);
+  eleventyConfig.addFilter("photoStem", (src) => path.parse(src).name);
 
   /* Inline markdown: **bold**, *italic*, [link](url) */
   eleventyConfig.addFilter("md", (s) => (s ? md.renderInline(String(s)) : ""));
@@ -102,6 +106,30 @@ export default function (eleventyConfig) {
 
   /* Resolve a stat/card entry to its displayed value */
   eleventyConfig.addFilter("statValue", (item, auto) => (item.auto ? auto[item.auto] : item.value));
+
+  /* schema.org Person (JSON-LD) for the home page, built from the data files */
+  eleventyConfig.addFilter("personJsonLd", (profile, site, experience, education, skills) => {
+    const plain = (s) => md.renderInline(String(s)).replace(/<[^>]+>/g, "").replace(/&amp;/g, "&");
+    const current = experience.filter((x) => !x.end);
+    const [locality, country] = profile.location.split(",").map((s) => s.trim());
+    const person = {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      name: profile.name,
+      url: `${site.url}/`,
+      image: `${site.url}/img/${path.parse(profile.photo).name}-600.jpeg`,
+      jobTitle: current[0]?.role ?? profile.headline,
+      description: plain(profile.summary),
+      email: `mailto:${profile.email}`,
+      address: { "@type": "PostalAddress", addressLocality: locality, addressCountry: country },
+      worksFor: current.map((x) => ({ "@type": "Organization", name: x.company })),
+      alumniOf: (education.degrees ?? []).map((d) => ({ "@type": "CollegeOrUniversity", name: d.school })),
+      sameAs: profile.links.filter((l) => l.id !== "email").map((l) => l.url),
+      knowsAbout: skills.groups.flatMap((g) => g.skills.filter((s) => s.core).map((s) => s.name)),
+    };
+    // "<" escaped so the JSON can never close the <script> tag early
+    return JSON.stringify(person).replace(/</g, "\\u003c");
+  });
 
   /* ── CV helpers ── */
   eleventyConfig.addFilter("cvDate", (v) => {

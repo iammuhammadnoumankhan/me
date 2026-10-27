@@ -4,45 +4,55 @@
   "title": "skills.yaml",
   "type": "object",
   "additionalProperties": false,
-  "required": ["groups"],
+  "required": [
+    "groups"
+  ],
   "properties": {
     "groups": {
       "type": "array",
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["title", "skills"],
+        "required": [
+          "title",
+          "skills"
+        ],
         "properties": {
-          "title": { "$ref": "_defs.schema.json#/definitions/text" },
-          "subtitle": { "$ref": "_defs.schema.json#/definitions/text" },
-          "icon": { "$ref": "_defs.schema.json#/definitions/text" },
+          "title": {
+            "$ref": "_defs.schema.json#/definitions/text"
+          },
+          "subtitle": {
+            "$ref": "_defs.schema.json#/definitions/text"
+          },
+          "icon": {
+            "$ref": "_defs.schema.json#/definitions/text"
+          },
           "skills": {
             "type": "array",
             "minItems": 1,
             "items": {
               "oneOf": [
-                { "$ref": "_defs.schema.json#/definitions/text" },
+                {
+                  "$ref": "_defs.schema.json#/definitions/text"
+                },
                 {
                   "type": "object",
                   "additionalProperties": false,
-                  "required": ["name"],
-                  "properties": { "name": { "$ref": "_defs.schema.json#/definitions/text" }, "core": { "type": "boolean" } }
+                  "required": [
+                    "name"
+                  ],
+                  "properties": {
+                    "name": {
+                      "$ref": "_defs.schema.json#/definitions/text"
+                    },
+                    "core": {
+                      "type": "boolean"
+                    }
+                  }
                 }
               ]
             }
           }
-        }
-      }
-    },
-    "proficiency": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["label", "level"],
-        "properties": {
-          "label": { "$ref": "_defs.schema.json#/definitions/text" },
-          "level": { "type": "integer", "minimum": 0, "maximum": 100 }
         }
       }
     }

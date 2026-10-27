@@ -11,13 +11,20 @@
 <meta property="og:title" content="{{ meta.title }}">
 <meta property="og:description" content="{{ meta.description }}">
 <meta property="og:url" content="{{ site.url }}{{ page.url }}">
-<meta property="og:image" content="{{ profile.photo | photoUrl(site.url) }}">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="{{ site.url }}/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{ profile.name }} — {{ cv.headline or profile.headline }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{{ site.url }}/og-card.png">
 <link rel="icon" href="{{ '/favicon.svg' | rel(page.url) }}" type="image/svg+xml">
 <link rel="icon" href="{{ '/favicon-32.png' | rel(page.url) }}" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="{{ '/apple-touch-icon.png' | rel(page.url) }}">
 <link rel="sitemap" type="application/xml" href="{{ '/sitemap.xml' | rel(page.url) }}">
 <meta name="theme-color" content="#0e0e0e">
+{%- if pageId == "home" %}
+<script type="application/ld+json">{{ profile | personJsonLd(site, experience, education, skills) | safe }}</script>
+{%- endif %}
 <script>document.documentElement.classList.add('js')</script>
 {#- Self-hosted fonts (see css/style.css); preloading the three upright faces avoids a layout shift when they swap in #}
 <link rel="preload" href="{{ '/fonts/syne.woff2' | rel(page.url) }}" as="font" type="font/woff2" crossorigin>

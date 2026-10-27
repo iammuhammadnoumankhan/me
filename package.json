@@ -7,7 +7,7 @@
     "start": "eleventy --serve",
     "build": "eleventy",
     "validate": "node scripts/validate.js",
-    "cv": "eleventy && node scripts/cv-pdf.js"
+    "cv": "eleventy"
   },
   "devDependencies": {
     "@11ty/eleventy": "3.1.7",

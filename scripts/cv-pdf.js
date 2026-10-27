@@ -18,7 +18,7 @@ const CHROME_CANDIDATES = [
   "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
 ];
 
-function findChrome() {
+export function findChrome() {
   const found = CHROME_CANDIDATES.find((p) => p && fs.existsSync(p));
   if (!found) throw new Error("CV PDF: Chrome not found. Install Google Chrome or set CHROME_PATH.");
   return found;

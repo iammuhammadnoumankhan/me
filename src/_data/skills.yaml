@@ -1,7 +1,6 @@
 # yaml-language-server: $schema=../../schemas/skills.schema.json
 # Skills page.
 #   groups[].skills : plain names, or `{ name: ..., core: true }` to highlight a core skill.
-#   proficiency     : the bar chart below the groups; `level` is 0–100.
 
 groups:
   - title: GPU_INFRASTRUCTURE & HPC
@@ -92,11 +91,3 @@ groups:
       - BeautifulSoup
       - Crawl4AI
       - Ollama # also listed under AI_MODEL_INFERENCE
-
-proficiency:
-  - { label: LLM / GenAI, level: 92 }
-  - { label: MLOps / K8s, level: 88 }
-  - { label: GPU / HPC, level: 84 }
-  - { label: Computer Vision, level: 80 }
-  - { label: Cloud / AWS, level: 78 }
-  - { label: Backend APIs, level: 75 }

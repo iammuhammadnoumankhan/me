@@ -2,7 +2,6 @@
 layout: layouts/base.njk
 pageId: skills
 pageCss: skills
-pageScripts: [skills]
 permalink: /pages/skills.html
 ---
   {% include "components/page-hero.njk" %}
@@ -32,20 +31,5 @@ permalink: /pages/skills.html
       {%- endfor %}
     </div>
 
-    {%- if skills.proficiency and skills.proficiency.length %}
-    <!-- Proficiency bars -->
-    <div class="prof-wrap">
-      <div class="section-eyebrow reveal">PROFICIENCY_OVERVIEW</div>
-      <div class="prof-band reveal" id="prof-band">
-        {%- for b in skills.proficiency %}
-        <div class="pb-row">
-          <div class="pb-label">{{ b.label }}</div>
-          <div class="pb-bar" role="meter" aria-label="{{ b.label }}" aria-valuenow="{{ b.level }}" aria-valuemin="0" aria-valuemax="100"><div class="pb-fill" style="--w:{{ b.level }}%"></div></div>
-          <div class="pb-pct">{{ b.level }}%</div>
-        </div>
-        {%- endfor %}
-      </div>
-    </div>
-    {%- endif %}
   </div>
   </div>

@@ -17,6 +17,7 @@ Non-negotiable rules for working in this repo. They come from the owner's explic
   - **Quantization:** say "quantization" only; don't name formats (no INT4/INT8/FP8).
   - **Project counts:** don't state a number of projects anywhere (no "500+", no "10+ more"). The `auto: projects` stat exists but must not be shown.
   - **IEEE paper link:** leave it out until the owner provides the IEEE Xplore URL or DOI.
+  - **No skill percentages** (proficiency bars) anywhere; the owner removed them.
 - **Private repositories stay private.** Never link to, or name, a private GitHub repo anywhere in this repo (it is public), including in docs and comments. A project from a private repo may be described, but gets no `links`. Before linking any repo, check `gh repo view <owner>/<name> --json isPrivate`.
 - **Only add projects the owner approves.** Ask before adding any repo as a project; the owner has declined several. Never add forks, coursework, or employer/client work.
 - **Project order** is driven by `priority`; keep simple projects low so they never sit at the top. A tentative date gets `date_estimated: true` until the owner confirms it.
