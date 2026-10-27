@@ -1,20 +1,53 @@
 # yaml-language-server: $schema=../../schemas/cv.schema.json
-# Settings for the downloadable CV (PDF). Its content comes from the other data files:
-# profile, experience, skills, projects, research and education — edit those, not this.
+# Settings for the downloadable CVs (PDF). Their content comes from the other data files —
+# profile, experience, skills, projects, research and education — so edit those, not this.
+#
+# Each variant is one PDF, tailored by headline, skill-group order and project picks.
+# The FIRST variant is the main CV: it is linked from the site's "Download CV" buttons and
+# keeps a stable URL, so don't rename its file. Every variant must stay at two pages.
+#
+#   id          : short slug; the web preview is /cv.html for the first variant, /cv-<id>.html for others
+#   filename    : PDF file name
+#   headline    : title under your name (defaults to profile.headline)
+#   skills_first: skill-group titles from skills.yaml to list first, in this order (the rest follow)
+#   projects    : exact project names from projects.yaml, in this order (keep to 4 for two pages)
+#   show_tech   : show each job's "Tech:" line (default true; good for ATS keyword matching)
 
-# File name visitors download
-filename: Muhammad-Nouman-Khan-CV.pdf
+variants:
+  - id: general
+    filename: Muhammad-Nouman-Khan-CV.pdf
+    headline: AI Engineer · MLOps Engineer
+    projects:
+      - Sadaa — ASR Annotation Platform
+      - AI Studio
+      - SecureFace — Face Recognition with Anti-Spoofing
+      - GOT-OCR 2.0 Microservice
 
-# Title under your name on the CV (defaults to profile.headline)
-headline: AI Engineer · MLOps Engineer
+  # For MLOps / platform / GPU-infrastructure roles
+  - id: mlops
+    filename: Muhammad-Nouman-Khan-CV-MLOps.pdf
+    headline: MLOps Engineer · GPU & Kubernetes Infrastructure
+    skills_first:
+      - KUBERNETES & MLOPS
+      - GPU_INFRASTRUCTURE & HPC
+      - AI_MODEL_INFERENCE & OPTIMIZATION
+      - CLOUD & BACKEND
+    projects:
+      - AI Studio
+      - Multi-Node OpenMPI HPC Cluster
+      - Whisper Transcription Service
+      - GOT-OCR 2.0 Microservice
 
-# Projects to include, by exact name from projects.yaml, in this order.
-# Keep it to your strongest 4–6 so the CV stays at two pages.
-projects:
-  - Sadaa — ASR Annotation Platform
-  - AI Studio
-  - SecureFace — Face Recognition with Anti-Spoofing
-  - GOT-OCR 2.0 Microservice
-
-# Show each job's tag list as a "Tech:" line (good for keyword-matching ATS)
-show_tech: true
+  # For AI / ML engineering roles (LLMs, RAG, speech, vision)
+  - id: ai-engineer
+    filename: Muhammad-Nouman-Khan-CV-AI-Engineer.pdf
+    headline: AI Engineer · LLMs, RAG & Speech AI
+    skills_first:
+      - AI_FRAMEWORKS & LLMs
+      - AI_MODEL_INFERENCE & OPTIMIZATION
+      - CLOUD & BACKEND
+    projects:
+      - Sadaa — ASR Annotation Platform
+      - SecureFace — Face Recognition with Anti-Spoofing
+      - GOT-OCR 2.0 Microservice
+      - Fine-Tune Whisper on Quranic Data

@@ -25,23 +25,26 @@ export function findChrome() {
 }
 
 export async function buildCvPdf(outDir = path.join(root, "_site")) {
-  const { filename } = loadYaml(fs.readFileSync(path.join(root, "src/_data/cv.yaml"), "utf8"));
-  const input = path.join(outDir, "cv.html");
-  const output = path.join(outDir, filename);
-
+  const { variants } = loadYaml(fs.readFileSync(path.join(root, "src/_data/cv.yaml"), "utf8"));
+  const outputs = [];
   const browser = await puppeteer.launch({ executablePath: findChrome(), args: ["--no-sandbox"] });
   try {
     const page = await browser.newPage();
-    await page.goto(pathToFileURL(input).href, { waitUntil: "networkidle0" });
-    await page.evaluate(() => document.fonts.ready);
-    await page.pdf({ path: output, preferCSSPageSize: true, printBackground: true });
+    // Same URL scheme as cv.njk's permalink: first variant is cv.html, the rest cv-<id>.html
+    for (const [i, v] of variants.entries()) {
+      const input = path.join(outDir, i === 0 ? "cv.html" : `cv-${v.id}.html`);
+      const output = path.join(outDir, v.filename);
+      await page.goto(pathToFileURL(input).href, { waitUntil: "networkidle0" });
+      await page.evaluate(() => document.fonts.ready);
+      await page.pdf({ path: output, preferCSSPageSize: true, printBackground: true });
+      outputs.push(output);
+    }
   } finally {
     await browser.close();
   }
-  return output;
+  return outputs;
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  const out = await buildCvPdf();
-  console.log(`✓ CV written to ${path.relative(root, out)}`);
+  for (const out of await buildCvPdf()) console.log(`✓ CV written to ${path.relative(root, out)}`);
 }

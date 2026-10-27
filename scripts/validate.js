@@ -38,17 +38,28 @@ export function validate() {
   }
 
   // Cross-file references
-  const { projects, pages, experience, cv } = data;
+  const { projects, pages, experience, cv, skills } = data;
   if (projects?.items && projects?.categories) {
     const ids = new Set(projects.categories.map((c) => c.id));
     projects.items.forEach((p, i) => {
       if (!ids.has(p.category)) errors.push(`projects.yaml: /items/${i} category '${p.category}' is not one of: ${[...ids].join(", ")}`);
     });
   }
-  if (cv?.projects && projects?.items) {
-    const names = new Set(projects.items.map((p) => p.name));
-    cv.projects.forEach((n, i) => {
-      if (!names.has(n)) errors.push(`cv.yaml: /projects/${i} '${n}' is not a project name in projects.yaml`);
+  if (Array.isArray(cv?.variants)) {
+    const names = new Set((projects?.items ?? []).map((p) => p.name));
+    const groups = new Set((skills?.groups ?? []).map((g) => g.title));
+    const seen = { id: new Set(), filename: new Set() };
+    cv.variants.forEach((v, i) => {
+      for (const key of ["id", "filename"]) {
+        if (seen[key].has(v[key])) errors.push(`cv.yaml: /variants/${i} duplicate ${key} '${v[key]}'`);
+        seen[key].add(v[key]);
+      }
+      (v.projects ?? []).forEach((n, j) => {
+        if (!names.has(n)) errors.push(`cv.yaml: /variants/${i}/projects/${j} '${n}' is not a project name in projects.yaml`);
+      });
+      (v.skills_first ?? []).forEach((t, j) => {
+        if (!groups.has(t)) errors.push(`cv.yaml: /variants/${i}/skills_first/${j} '${t}' is not a group title in skills.yaml`);
+      });
     });
   }
   if (pages?.home?.explore) {

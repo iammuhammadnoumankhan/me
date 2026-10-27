@@ -1,9 +1,13 @@
 ---
-permalink: /cv.html
+pagination:
+  data: cv.variants
+  size: 1
+  alias: variant
+permalink: "{{ '/cv.html' if pagination.pageNumber == 0 else '/cv-' + variant.id + '.html' }}"
 eleventyExcludeFromCollections: true
 ---
 {#- Printable CV. Built from the same data files as the site and printed to PDF
-    (cv.filename) after every production build — see scripts/cv-pdf.js. -#}
+    (variant.filename) after every production build — see scripts/cv-pdf.js. -#}
 {%- set cvLinks = profile.links | cvLinks -%}
 <!DOCTYPE html>
 <html lang="{{ site.lang }}">
@@ -12,7 +16,7 @@ eleventyExcludeFromCollections: true
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ profile.name }} — CV</title>
 <meta name="author" content="{{ profile.name }}">
-<meta name="description" content="CV of {{ profile.name }}, {{ cv.headline or profile.headline }}.">
+<meta name="description" content="CV of {{ profile.name }}, {{ variant.headline or profile.headline }}.">
 <meta name="robots" content="noindex">
 <style>
 /* Static (non-variable) instances so Chrome embeds real TrueType fonts in the PDF, not Type 3 */
@@ -97,7 +101,7 @@ li::marker { color: var(--accent); }
 
 <header>
   <h1>{{ profile.name }}</h1>
-  <div class="headline">{{ cv.headline or profile.headline }}</div>
+  <div class="headline">{{ variant.headline or profile.headline }}</div>
   <div class="contact">
     <span>{{ profile.location }}</span>
     {%- for l in cvLinks %}{% if l.id == "email" %}
@@ -134,7 +138,7 @@ li::marker { color: var(--accent); }
       <li>{{ h | md | safe }}</li>
       {%- endfor %}
     </ul>
-    {%- if cv.show_tech and job.tags and job.tags.length %}
+    {%- if variant.show_tech != false and job.tags and job.tags.length %}
     <div class="tech"><b>Tech:</b> {{ job.tags | join(", ") }}</div>
     {%- endif %}
   </div>
@@ -144,14 +148,14 @@ li::marker { color: var(--accent); }
 <section>
   <h2>Skills</h2>
   <dl class="skills">
-    {%- for g in skills.groups | cvSkills %}
+    {%- for g in skills.groups | cvSkills(variant.skills_first) %}
     <dt>{{ g.title }}</dt>
     <dd>{{ g.skills | join(", ") }}</dd>
     {%- endfor %}
   </dl>
 </section>
 
-{%- set cvProjects = projects.items | pickByName(cv.projects) %}
+{%- set cvProjects = projects.items | pickByName(variant.projects) %}
 {%- if cvProjects.length %}
 <section>
   <h2>Selected Projects</h2>

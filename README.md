@@ -18,7 +18,7 @@ Edit the file for what you want to change, then push:
 | `src/_data/education.yaml` | Degrees, certifications and awards | About |
 | `src/_data/pages.yaml` | Page titles, SEO descriptions, hero text, nav order, page-specific cards | Every page |
 | `src/_data/site.yaml` | Public URL, language, analytics | `<head>` metadata, sitemap, GoatCounter |
-| `src/_data/cv.yaml` | CV file name, headline and which projects to include | The PDF CV |
+| `src/_data/cv.yaml` | CV variants: file name, headline, skill order, projects | The PDF CVs |
 
 Each file has a comment at the top explaining its fields. Some conventions:
 
@@ -51,11 +51,16 @@ Each file has a comment at the top explaining its fields. Some conventions:
 The build turns `src/pages/cv.njk` into `cv.html`, then prints it to `Muhammad-Nouman-Khan-CV.pdf` with headless Chrome. The site links to it from the home page and the contact page with "Download CV" buttons.
 
 - **Content** comes from `profile`, `experience`, `skills`, `projects`, `research` and `education`, so editing those updates the CV too.
-- **`cv.yaml`** sets the file name, the headline under your name, and which projects appear (keep it to 4–6 so the CV stays at two pages).
+- **`cv.yaml`** defines one or more **variants**, each producing its own PDF with its own headline, skill-group order (`skills_first`) and project picks. Keep each to 4 projects so it stays at two pages. The first variant is the main CV linked from the site; don't rename its file.
+- Current variants:
+  - **Main**: `Muhammad-Nouman-Khan-CV.pdf` (AI Engineer · MLOps Engineer), linked from the site
+  - **MLOps**: `Muhammad-Nouman-Khan-CV-MLOps.pdf`, infrastructure first, for MLOps / platform / GPU roles
+  - **AI Engineer**: `Muhammad-Nouman-Khan-CV-AI-Engineer.pdf`, LLMs, RAG and speech first, for AI/ML roles
+- All are published next to the site, e.g. `https://iammuhammadnoumankhan.github.io/me/Muhammad-Nouman-Khan-CV-MLOps.pdf`, so you can send a link instead of an attachment.
 - **ATS-friendly:** single column, real selectable text, standard section headings, embedded TrueType fonts, clickable links.
 - **Preview locally:** run `npm run cv`, then open `_site/Muhammad-Nouman-Khan-CV.pdf`, or open `_site/cv.html` in a browser.
 
-If you add content and the CV grows to three pages, drop a project from `cv.yaml` or trim a bullet point.
+If you add content and a CV grows to three pages, drop a project from that variant in `cv.yaml` or trim a bullet point.
 
 ## Analytics
 

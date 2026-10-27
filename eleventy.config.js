@@ -152,7 +152,9 @@ export default function (eleventyConfig) {
   );
   /* Skill groups with readable titles ("GPU_INFRASTRUCTURE & HPC" -> "GPU Infrastructure & HPC")
      and each skill listed only once across groups */
-  eleventyConfig.addFilter("cvSkills", (groups) => {
+  eleventyConfig.addFilter("cvSkills", (groups, first = []) => {
+    const rank = (g) => (first.includes(g.title) ? first.indexOf(g.title) : first.length);
+    groups = [...groups].sort((a, b) => rank(a) - rank(b)); // stable: unlisted groups keep their order
     const seen = new Set();
     const SPECIAL = { MLOPS: "MLOps", LLMS: "LLMs" };
     const word = (w) =>

@@ -4,11 +4,25 @@
   "title": "cv.yaml",
   "type": "object",
   "additionalProperties": false,
-  "required": ["filename"],
+  "required": ["variants"],
   "properties": {
-    "filename": { "type": "string", "pattern": "^[A-Za-z0-9._-]+\\.pdf$" },
-    "headline": { "$ref": "_defs.schema.json#/definitions/text" },
-    "projects": { "type": "array", "items": { "type": "string" }, "description": "Exact names from projects.yaml" },
-    "show_tech": { "type": "boolean" }
+    "variants": {
+      "type": "array",
+      "minItems": 1,
+      "description": "One PDF per variant; the first is the main CV linked from the site",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "filename", "projects"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "filename": { "type": "string", "pattern": "^[A-Za-z0-9._-]+\\.pdf$" },
+          "headline": { "$ref": "_defs.schema.json#/definitions/text" },
+          "skills_first": { "type": "array", "items": { "type": "string" }, "description": "Skill-group titles from skills.yaml, listed first in this order" },
+          "projects": { "type": "array", "items": { "type": "string" }, "description": "Exact names from projects.yaml" },
+          "show_tech": { "type": "boolean" }
+        }
+      }
+    }
   }
 }

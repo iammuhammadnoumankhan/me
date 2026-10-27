@@ -45,11 +45,10 @@ Key template filters (all in `eleventy.config.js`):
 
 1. `npm run build`: must pass validation and print `Wrote N files`.
 2. For content changes, grep the built HTML in `_site/` for the new text.
-3. For CV-affecting changes, check the PDF is still **2 pages** and headings extract cleanly:
+3. For CV-affecting changes, check **every** variant PDF is still **2 pages** with clean headings and TrueType fonts:
    ```bash
-   python3 -c "from pypdf import PdfReader; print(len(PdfReader('_site/Muhammad-Nouman-Khan-CV.pdf').pages))"
-   pdftotext -layout _site/Muhammad-Nouman-Khan-CV.pdf - | head -40
-   pdffonts _site/Muhammad-Nouman-Khan-CV.pdf   # must be CID TrueType, never Type 3
+   for f in _site/*.pdf; do echo "$f: $(python3 -c "from pypdf import PdfReader; print(len(PdfReader('$f').pages))") pages"; pdffonts "$f" | tail -n +3 | awk '{print $2, $3}' | sort -u; done
+   pdftotext -layout _site/Muhammad-Nouman-Khan-CV.pdf - | head -40   # headings must read SUMMARY, EXPERIENCE, …
    ```
 4. For visual/CSS changes, serve `_site` under a `/me/` path (e.g. copy into `<tmp>/me/` and `python3 -m http.server`) and screenshot; audit with Lighthouse (target 100 accessibility / best practices / SEO).
 5. After pushing, watch the run: `gh run list -R iammuhammadnoumankhan/me -L 1`, then `gh run watch <id> --exit-status`.

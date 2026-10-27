@@ -32,7 +32,7 @@ Non-negotiable rules for working in this repo. They come from the owner's explic
 
 ## CV
 
-- **Exactly 2 A4 pages.** If a change pushes it to 3, trim (fewer projects in `cv.yaml`, or ask the owner which content to cut). Never shrink the font below 9pt to make it fit.
+- **Every CV variant is exactly 2 A4 pages.** If a change pushes one to 3, trim (fewer projects in that variant in `cv.yaml`, or ask the owner which content to cut). Never shrink the font below 9pt to make it fit. The first variant's file name is linked from the site and the GitHub profile, so never rename it.
 - **ATS-safe:** single column, real text, standard section headings, no wide letter-spacing on headings (it splits words in text extraction), static TrueType fonts from `src/fonts/cv/` (variable fonts embed as Type 3), no photo, no skill percentages.
 
 ## Dependencies and tooling

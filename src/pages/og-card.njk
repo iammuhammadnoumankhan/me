@@ -61,7 +61,7 @@ h1 span {
   <div class="text">
     <div class="eyebrow">{{ profile.roles | join(" · ") }}</div>
     <h1>{{ profile.first_name }}<br><span>{{ profile.last_name }}</span></h1>
-    <div class="role">{{ cv.headline or profile.headline }}</div>
+    <div class="role">{{ cv.variants[0].headline or profile.headline }}</div>
     <div class="url">{{ site.url | displayUrl }}</div>
   </div>
   <div class="photo"><img src="img/{{ profile.photo | photoStem }}-600.jpeg" alt=""></div>

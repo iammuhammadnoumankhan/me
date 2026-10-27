@@ -22,12 +22,12 @@ Conventions shared by every file:
 | `research.yaml` | object | per publication: `title`, `authors[]`, `venue`, `publisher`, `date` | `authors[].me: true` bolds the owner; `url` and `doi` are optional (adds READ_PAPER / DOI buttons) |
 | `education.yaml` | object | per degree: `degree`, `school`, `start` | `certifications[]` (`name`, `issuer`, optional `icon`, `url`), `awards[]` (`rank`, `title`, optional `detail`) |
 | `pages.yaml` | object keyed by page id | ids `home, about, experience, skills, projects, research, contact`; each needs `nav`, `url` (starts with `/`), `title`, `description` | key order = nav order; `nav_cta: true` = outlined nav button; hero titles use `[[accent]]` and `\n` |
-| `cv.yaml` | object | `filename` (`*.pdf`, safe characters only) | `headline` overrides `profile.headline`; `projects[]` are exact project names; `show_tech` toggles experience "Tech:" lines |
+| `cv.yaml` | object | `variants[]` (≥1), each with `id`, `filename` (`*.pdf`), `projects[]` | one PDF per variant; the **first is the main CV** linked from the site; `headline` overrides `profile.headline`; `skills_first[]` reorders skill groups; `show_tech: false` hides experience "Tech:" lines |
 
 ### Cross-file rules (enforced in `scripts/validate.js`)
 
 - `projects.items[].category` must be one of `projects.categories[].id`.
-- `cv.projects[]` must each match a `projects.items[].name` exactly.
+- `cv.variants[].projects[]` must each match a `projects.items[].name`, and `skills_first[]` a `skills.groups[].title`; variant `id`s and `filename`s are unique.
 - `pages.home.explore[].page` must be a page id in `pages.yaml`.
 - `experience[].end` must not be before `start`.
 
@@ -41,7 +41,7 @@ Conventions shared by every file:
 ## 2. Template contracts
 
 - Every page template sets `layout: layouts/base.njk`, a `pageId` that matches a `pages.yaml` key, an optional `pageCss` (loads `css/pages/<pageCss>.css`), optional `pageScripts` (loads `js/<name>.js`), and an explicit `permalink`.
-- **Public URLs are stable:** `/index.html`, `/pages/{about,experience,skills,projects,research,contact}.html`, `/cv.html`, `/sitemap.xml`, `/<cv.filename>`, `/og-card.png`. Changing one breaks inbound links; avoid it.
+- **Public URLs are stable:** `/index.html`, `/pages/{about,experience,skills,projects,research,contact}.html`, `/cv.html` (main variant), `/cv-<id>.html` (other variants), `/sitemap.xml`, `/<variant.filename>` for each variant, `/og-card.png`. Changing one breaks inbound links; avoid it.
 - Internal links and asset paths go through `rel(page.url)` and must resolve under any base path.
 - `base.njk` provides, on every page: `<title>`, meta description, canonical URL, Open Graph / Twitter tags (image = `og-card.png`, 1200×630), favicons, font preloads, server-rendered nav and footer, a single `<main class="page-wrapper">`, and `html.js` set before first paint. The home page also gets a schema.org `Person` JSON-LD block built from profile, experience, education and skills.
 - `og-card.njk` is the social preview: standalone, `noindex`, excluded from collections; it must fit 1200×630 with nothing clipped.
@@ -54,7 +54,7 @@ Conventions shared by every file:
 1. Validate all data (abort with every error listed if any check fails).
 2. Render all pages into `_site/` and copy `css/`, `js/`, `fonts/` and `assets/*` (icons at the site root).
 3. Generate `img/<photo>-{300,600}.{webp,jpeg}` from `profile.photo`; a missing photo fails the build.
-4. Production builds only (needs Chrome or `CHROME_PATH`): print `_site/cv.html` to `_site/<cv.filename>`, then screenshot `_site/og-card.html` to `_site/og-card.png`.
+4. Production builds only (needs Chrome or `CHROME_PATH`): print each CV variant page to `_site/<variant.filename>`, then screenshot `_site/og-card.html` to `_site/og-card.png`.
 
 CI (`deploy.yml`) runs exactly `npm ci && npm run build` and deploys `_site/` only from `main`.
 
@@ -64,7 +64,7 @@ CI (`deploy.yml`) runs exactly `npm ci && npm run build` and deploys `_site/` on
 - Lighthouse 100 for accessibility, best practices and SEO on every page; no layout shift from fonts (preloaded, self-hosted).
 - Fully usable without JavaScript; respects `prefers-reduced-motion`.
 
-**CV PDF**
+**CV PDFs** (every variant)
 - A4, exactly **2 pages**, single column, selectable text.
 - Fonts embedded as CID TrueType (never Type 3); text extraction yields these section headings in order: `SUMMARY, EXPERIENCE, SKILLS, SELECTED PROJECTS, PUBLICATIONS, EDUCATION, CERTIFICATIONS & AWARDS` (sections with no data are omitted).
 - Header links (email, LinkedIn, GitHub, portfolio) are clickable; freelance profiles (Fiverr, Upwork) stay on the website only.
